@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>EcoBeach Experience</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(180deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+    }
+
+    img {
+      max-width: 85%;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+      transition: all 1.5s ease;
+    }
+
+    #logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.5);
+      opacity: 0;
+      animation: showLogo 2s ease forwards;
+    }
+
+    @keyframes showLogo {
+      to {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+    }
+
+    #info {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1.2);
+      opacity: 0;
+    }
+
+    .fadeOut {
+      animation: fadeOut 1.5s forwards;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.3);
+        filter: blur(10px);
+      }
+    }
+
+    .fadeIn {
+      animation: fadeIn 2s forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+    .title {
+      position: absolute;
+      bottom: 40px;
+      width: 100%;
+      font-size: 28px;
+      letter-spacing: 2px;
+      opacity: 0;
+      animation: textAppear 3s ease forwards;
+      animation-delay: 4s;
+    }
+
+    @keyframes textAppear {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Partículas */
+    .bubble {
+      position: absolute;
+      bottom: -50px;
+      width: 15px;
+      height: 15px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 50%;
+      animation: float 10s infinite ease-in;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-100vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- Logo -->
+  <img id="logo" src="IMAGEN1.jpeg" alt="EcoBeach Logo">
+
+  <!-- Imagen final -->
+  <img id="info" src="IMAGEN2.jpeg" alt="EcoBeach Info">
+
+  <!-- Texto -->
+  <div class="title">🌊 EcoBeach - Naturaleza que se convierte en arte 🌿</div>
+
+</div>
+
+<!-- Sonido ambiente -->
+<audio id="sound" src="https://www.soundjay.com/nature/ocean-wave-1.mp3"></audio>
+
+<script>
+  const logo = document.getElementById("logo");
+  const info = document.getElementById("info");
+  const sound = document.getElementById("sound");
+
+  // Crear burbujas dinámicas
+  for (let i = 0; i < 20; i++) {
+    let bubble = document.createElement("div");
+    bubble.classList.add("bubble");
+    bubble.style.left = Math.random() * 100 + "%";
+    bubble.style.animationDuration = (5 + Math.random() * 5) + "s";
+    document.body.appendChild(bubble);
+  }
+
+  // Sonido al iniciar
+  setTimeout(() => {
+    sound.play().catch(() => {});
+  }, 1000);
+
+  // Cambio de escena
+  setTimeout(() => {
+    logo.classList.add("fadeOut");
+
+    setTimeout(() => {
+      logo.style.display = "none";
+      info.style.display = "block";
+      info.classList.add("fadeIn");
+    }, 1500);
+
+  }, 3500);
+</script>
+
+</body>
+</html>
