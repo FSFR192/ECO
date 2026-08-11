@@ -1,174 +1,1500 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>EcoBeach Experience</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
+    <meta name="theme-color" content="#062f35">
+    <meta name="description" content="EcoBeach - Llaveros ecológicos inspirados en el mar y la naturaleza.">
 
-    body {
-      background: linear-gradient(180deg, #0f2027, #203a43, #2c5364);
-      color: white;
-      overflow: hidden;
-      text-align: center;
-    }
+    <title>EcoBeach | Pequeños recuerdos, grandes historias</title>
 
-    .container {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-    }
+    <style>
 
-    img {
-      max-width: 85%;
-      border-radius: 20px;
-      box-shadow: 0 0 30px rgba(0,0,0,0.5);
-      transition: all 1.5s ease;
-    }
+        /* =====================================================
+           CONFIGURACIÓN GENERAL
+        ===================================================== */
 
-    #logo {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0.5);
-      opacity: 0;
-      animation: showLogo 2s ease forwards;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    @keyframes showLogo {
-      to {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
-      }
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    #info {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(1.2);
-      opacity: 0;
-    }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #031c21;
+            color: white;
+            overflow-x: hidden;
+        }
 
-    .fadeOut {
-      animation: fadeOut 1.5s forwards;
-    }
+        button {
+            font-family: inherit;
+        }
 
-    @keyframes fadeOut {
-      to {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(1.3);
-        filter: blur(10px);
-      }
-    }
 
-    .fadeIn {
-      animation: fadeIn 2s forwards;
-    }
+        /* =====================================================
+           PANTALLA DE INTRODUCCIÓN
+        ===================================================== */
 
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-      }
-    }
+        #intro {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
 
-    .title {
-      position: absolute;
-      bottom: 40px;
-      width: 100%;
-      font-size: 28px;
-      letter-spacing: 2px;
-      opacity: 0;
-      animation: textAppear 3s ease forwards;
-      animation-delay: 4s;
-    }
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-    @keyframes textAppear {
-      to {
-        opacity: 1;
-      }
-    }
+            background:
+                radial-gradient(
+                    circle at center,
+                    #155b63 0%,
+                    #083a42 35%,
+                    #031c21 75%,
+                    #010b0d 100%
+                );
 
-    /* Partículas */
-    .bubble {
-      position: absolute;
-      bottom: -50px;
-      width: 15px;
-      height: 15px;
-      background: rgba(255,255,255,0.3);
-      border-radius: 50%;
-      animation: float 10s infinite ease-in;
-    }
+            transition:
+                opacity 1.4s ease,
+                visibility 1.4s ease;
+        }
 
-    @keyframes float {
-      from {
-        transform: translateY(0);
-        opacity: 1;
-      }
-      to {
-        transform: translateY(-100vh);
-        opacity: 0;
-      }
-    }
-  </style>
+        #intro.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+
+        /* Luz detrás del logo */
+
+        .intro-glow {
+            position: absolute;
+
+            width: 280px;
+            height: 280px;
+
+            border-radius: 50%;
+
+            background: rgba(91, 224, 207, 0.18);
+
+            filter: blur(45px);
+
+            animation: pulseGlow 3s infinite ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+
+            0%, 100% {
+                transform: scale(0.8);
+                opacity: 0.4;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 0.9;
+            }
+        }
+
+
+        /* Logo */
+
+        #logo {
+            position: relative;
+            z-index: 2;
+
+            width: min(72vw, 330px);
+            max-height: 330px;
+
+            object-fit: contain;
+
+            border-radius: 25px;
+
+            opacity: 0;
+
+            transform:
+                scale(0.55)
+                translateY(30px);
+
+            filter: blur(8px);
+
+            animation:
+                logoAppear 2.3s
+                cubic-bezier(.17,.67,.35,1.35)
+                forwards;
+
+            box-shadow:
+                0 0 80px rgba(84, 231, 211, 0.15);
+        }
+
+        @keyframes logoAppear {
+
+            0% {
+                opacity: 0;
+                transform:
+                    scale(0.55)
+                    translateY(30px);
+                filter: blur(8px);
+            }
+
+            60% {
+                opacity: 1;
+                filter: blur(0);
+            }
+
+            100% {
+                opacity: 1;
+                transform:
+                    scale(1)
+                    translateY(0);
+                filter: blur(0);
+            }
+        }
+
+
+        /* Texto de introducción */
+
+        .intro-text {
+            position: absolute;
+
+            bottom: 14%;
+
+            width: 100%;
+
+            text-align: center;
+
+            opacity: 0;
+
+            animation:
+                introTextAppear 1.5s ease
+                1.2s forwards;
+        }
+
+        .intro-text small {
+            display: block;
+
+            text-transform: uppercase;
+
+            letter-spacing: 5px;
+
+            font-size: 10px;
+
+            color: #9ce9df;
+
+            margin-bottom: 8px;
+        }
+
+        .intro-text span {
+            font-size: 14px;
+
+            letter-spacing: 2px;
+
+            color: rgba(255,255,255,.85);
+        }
+
+        @keyframes introTextAppear {
+
+            to {
+                opacity: 1;
+            }
+        }
+
+
+        /* =====================================================
+           BURBUJAS
+        ===================================================== */
+
+        .bubble {
+            position: fixed;
+
+            bottom: -30px;
+
+            width: 8px;
+            height: 8px;
+
+            border: 1px solid rgba(255,255,255,.35);
+
+            border-radius: 50%;
+
+            pointer-events: none;
+
+            animation: bubbleUp linear forwards;
+
+            z-index: 1;
+        }
+
+        @keyframes bubbleUp {
+
+            0% {
+                transform:
+                    translateY(0)
+                    scale(.7);
+
+                opacity: 0;
+            }
+
+            20% {
+                opacity: .7;
+            }
+
+            100% {
+                transform:
+                    translateY(-110vh)
+                    scale(1.4);
+
+                opacity: 0;
+            }
+        }
+
+
+        /* =====================================================
+           PÁGINA PRINCIPAL
+        ===================================================== */
+
+        #main {
+            opacity: 0;
+
+            transition: opacity 1.2s ease;
+
+            pointer-events: none;
+        }
+
+        #main.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+
+            position: relative;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 40px 22px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(2,38,44,.25),
+                    rgba(1,17,20,.95)
+                ),
+                radial-gradient(
+                    circle at 50% 20%,
+                    #11616b,
+                    #03252b 55%,
+                    #011417
+                );
+        }
+
+
+        /* círculos decorativos */
+
+        .hero::before,
+        .hero::after {
+
+            content: "";
+
+            position: absolute;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(127,231,216,.15);
+
+            pointer-events: none;
+        }
+
+        .hero::before {
+
+            width: 500px;
+            height: 500px;
+
+            top: -300px;
+            right: -220px;
+        }
+
+        .hero::after {
+
+            width: 350px;
+            height: 350px;
+
+            bottom: -230px;
+            left: -160px;
+        }
+
+
+        .hero-content {
+
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 700px;
+
+            animation: heroAppear 1.4s ease forwards;
+        }
+
+        @keyframes heroAppear {
+
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        .eyebrow {
+
+            display: inline-block;
+
+            padding: 8px 16px;
+
+            border:
+
+                1px solid
+                rgba(151,237,224,.35);
+
+            border-radius: 50px;
+
+            color: #9ce9df;
+
+            font-size: 11px;
+
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 22px;
+
+            background:
+                rgba(255,255,255,.04);
+
+            backdrop-filter: blur(10px);
+        }
+
+
+        .hero h1 {
+
+            font-size: clamp(42px, 12vw, 90px);
+
+            line-height: .95;
+
+            letter-spacing: -4px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .hero h1 span {
+
+            display: block;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #8de5d9,
+                    #ffffff
+                );
+
+            background-size: 200%;
+
+            -webkit-background-clip: text;
+
+            background-clip: text;
+
+            color: transparent;
+
+            animation: shine 4s linear infinite;
+        }
+
+        @keyframes shine {
+
+            to {
+                background-position: 200%;
+            }
+        }
+
+
+        .hero p {
+
+            max-width: 580px;
+
+            margin: auto;
+
+            font-size: 17px;
+
+            line-height: 1.7;
+
+            color: rgba(255,255,255,.72);
+        }
+
+
+        .scroll {
+
+            position: absolute;
+
+            bottom: 25px;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            color: rgba(255,255,255,.5);
+
+            font-size: 10px;
+
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+
+            animation: floating 2s infinite ease-in-out;
+        }
+
+        @keyframes floating {
+
+            0%,100% {
+                transform:
+                    translate(-50%,0);
+            }
+
+            50% {
+                transform:
+                    translate(-50%,8px);
+            }
+        }
+
+
+        /* =====================================================
+           SECCIÓN PRODUCTO
+        ===================================================== */
+
+        .product-section {
+
+            position: relative;
+
+            padding: 90px 20px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #011417,
+                    #062e34
+                );
+        }
+
+
+        .section-container {
+
+            max-width: 1050px;
+
+            margin: auto;
+        }
+
+
+        .section-title {
+
+            text-align: center;
+
+            margin-bottom: 55px;
+        }
+
+
+        .section-title .mini {
+
+            color: #79d8cc;
+
+            font-size: 11px;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 12px;
+        }
+
+
+        .section-title h2 {
+
+            font-size: clamp(30px, 7vw, 54px);
+
+            line-height: 1.05;
+
+            margin-bottom: 15px;
+        }
+
+
+        .section-title p {
+
+            max-width: 650px;
+
+            margin: auto;
+
+            color: rgba(255,255,255,.65);
+
+            line-height: 1.7;
+        }
+
+
+        /* Tarjeta */
+
+        .product-card {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 50px;
+
+            align-items: center;
+
+            background:
+                rgba(255,255,255,.045);
+
+            border:
+                1px solid
+                rgba(255,255,255,.10);
+
+            border-radius: 30px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 30px 100px
+                rgba(0,0,0,.25);
+
+            backdrop-filter:
+                blur(15px);
+        }
+
+
+        .product-image {
+
+            position: relative;
+
+            overflow: hidden;
+
+            border-radius: 22px;
+
+            background: #082d32;
+        }
+
+
+        .product-image img {
+
+            width: 100%;
+
+            display: block;
+
+            transition:
+                transform .8s ease;
+        }
+
+
+        .product-image:hover img {
+
+            transform:
+                scale(1.05);
+        }
+
+
+        .product-info {
+
+            padding: 15px;
+        }
+
+
+        .product-info .tag {
+
+            color: #80e2d5;
+
+            text-transform: uppercase;
+
+            font-size: 10px;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 15px;
+
+            display: block;
+        }
+
+
+        .product-info h3 {
+
+            font-size: 32px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .product-info p {
+
+            color:
+                rgba(255,255,255,.68);
+
+            line-height: 1.8;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* Características */
+
+        .features {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 12px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .feature {
+
+            padding: 14px;
+
+            border-radius: 14px;
+
+            background:
+                rgba(255,255,255,.04);
+
+            border:
+                1px solid
+                rgba(255,255,255,.06);
+
+            font-size: 13px;
+
+            color:
+                rgba(255,255,255,.82);
+        }
+
+
+        /* =====================================================
+           HISTORIA
+        ===================================================== */
+
+        .story {
+
+            padding: 100px 20px;
+
+            background:
+                #f1eee5;
+
+            color: #123b3d;
+
+            text-align: center;
+        }
+
+
+        .story-container {
+
+            max-width: 850px;
+
+            margin: auto;
+        }
+
+
+        .story .mini {
+
+            color: #4c9990;
+
+            font-size: 11px;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 15px;
+        }
+
+
+        .story h2 {
+
+            font-size:
+                clamp(30px,7vw,55px);
+
+            margin-bottom: 25px;
+        }
+
+
+        .story p {
+
+            font-size: 17px;
+
+            line-height: 1.9;
+
+            color: #456260;
+        }
+
+
+        /* =====================================================
+           BENEFICIOS
+        ===================================================== */
+
+        .benefits {
+
+            padding: 90px 20px;
+
+            background:
+                #062e34;
+        }
+
+
+        .benefits-grid {
+
+            max-width: 1000px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4,1fr);
+
+            gap: 15px;
+        }
+
+
+        .benefit {
+
+            text-align: center;
+
+            padding: 30px 15px;
+
+            border-radius: 22px;
+
+            background:
+                rgba(255,255,255,.04);
+
+            border:
+                1px solid
+                rgba(255,255,255,.07);
+        }
+
+
+        .benefit-icon {
+
+            font-size: 30px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .benefit h3 {
+
+            font-size: 15px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .benefit p {
+
+            font-size: 12px;
+
+            line-height: 1.6;
+
+            color:
+                rgba(255,255,255,.55);
+        }
+
+
+        /* =====================================================
+           LLAMADO FINAL
+        ===================================================== */
+
+        .cta {
+
+            position: relative;
+
+            padding: 110px 20px;
+
+            text-align: center;
+
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    #0a6971,
+                    #032b31 55%,
+                    #011518
+                );
+        }
+
+
+        .cta h2 {
+
+            font-size:
+                clamp(32px,8vw,65px);
+
+            line-height: 1;
+
+            margin-bottom: 20px;
+        }
+
+
+        .cta p {
+
+            color:
+                rgba(255,255,255,.65);
+
+            max-width: 550px;
+
+            margin:
+                0 auto 30px;
+
+            line-height: 1.7;
+        }
+
+
+        .cta-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding:
+                16px 28px;
+
+            border-radius: 50px;
+
+            border: none;
+
+            background:
+                #f5efe1;
+
+            color: #08393d;
+
+            font-weight: bold;
+
+            font-size: 14px;
+
+            cursor: pointer;
+
+            text-decoration: none;
+
+            transition:
+                transform .3s ease,
+                box-shadow .3s ease;
+        }
+
+
+        .cta-button:hover {
+
+            transform:
+                translateY(-4px)
+                scale(1.03);
+
+            box-shadow:
+                0 15px 35px
+                rgba(0,0,0,.3);
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+
+            padding: 30px 20px;
+
+            text-align: center;
+
+            background: #011417;
+
+            color:
+                rgba(255,255,255,.4);
+
+            font-size: 11px;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 750px) {
+
+            .product-card {
+
+                grid-template-columns: 1fr;
+
+                gap: 25px;
+
+                padding: 15px;
+            }
+
+
+            .product-info {
+
+                padding: 10px 5px 20px;
+            }
+
+
+            .benefits-grid {
+
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+
+            .hero h1 {
+
+                letter-spacing: -2px;
+            }
+        }
+
+
+        @media (max-width: 430px) {
+
+            .benefits-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .features {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .hero p {
+
+                font-size: 15px;
+            }
+        }
+
+    </style>
 </head>
+
 
 <body>
 
-<div class="container">
 
-  <!-- Logo -->
-  <img id="logo" src="IMAGEN1.jpeg" alt="EcoBeach Logo">
+<!-- =========================================================
+     INTRO
+========================================================= -->
 
-  <!-- Imagen final -->
-  <img id="info" src="IMAGEN2.jpeg" alt="EcoBeach Info">
+<div id="intro">
 
-  <!-- Texto -->
-  <div class="title">🌊 EcoBeach - Naturaleza que se convierte en arte 🌿</div>
+    <div class="intro-glow"></div>
+
+    <img
+        id="logo"
+        src="IMAGEN1.jpeg"
+        alt="Logo EcoBeach"
+    >
+
+    <div class="intro-text">
+
+        <small>Una nueva forma de recordar</small>
+
+        <span>Descubre EcoBeach</span>
+
+    </div>
 
 </div>
 
-<!-- Sonido ambiente -->
-<audio id="sound" src="https://www.soundjay.com/nature/ocean-wave-1.mp3"></audio>
+
+
+<!-- =========================================================
+     CONTENIDO PRINCIPAL
+========================================================= -->
+
+<main id="main">
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+                🌊 Inspirado por el mar
+            </div>
+
+            <h1>
+                Pequeños recuerdos,
+                <span>grandes historias.</span>
+            </h1>
+
+            <p>
+                Bienvenido a <strong>EcoBeach</strong>.
+                Descubre nuestros llaveros ecológicos de resina,
+                creados para llevar contigo un pequeño pedacito
+                del mar y la naturaleza.
+            </p>
+
+        </div>
+
+
+        <div class="scroll">
+            ↓ Descubre nuestra historia
+        </div>
+
+    </section>
+
+
+
+    <!-- PRODUCTO -->
+
+    <section class="product-section">
+
+        <div class="section-container">
+
+
+            <div class="section-title">
+
+                <div class="mini">
+                    Nuestro producto
+                </div>
+
+                <h2>
+                    Algo pequeño.
+                    <br>
+                    Algo especial.
+                </h2>
+
+                <p>
+                    Creamos llaveros que no solo sirven como
+                    accesorios, sino también como recuerdos
+                    de una experiencia junto al mar.
+                </p>
+
+            </div>
+
+
+
+            <div class="product-card">
+
+
+                <!-- IMAGEN 2 -->
+
+                <div class="product-image">
+
+                    <img
+                        src="IMAGEN2.jpeg"
+                        alt="Llaveros EcoBeach"
+                    >
+
+                </div>
+
+
+
+                <!-- INFORMACIÓN -->
+
+                <div class="product-info">
+
+                    <span class="tag">
+                        EcoBeach Collection
+                    </span>
+
+                    <h3>
+                        Llaveros ecológicos
+                    </h3>
+
+                    <p>
+                        Nuestros llaveros son elaborados con
+                        resina y diseños inspirados en el mar,
+                        la playa y la naturaleza.
+
+                        Cada pieza busca convertirse en un
+                        recuerdo único que puedas llevar
+                        contigo todos los días.
+                    </p>
+
+
+                    <div class="features">
+
+                        <div class="feature">
+                            🌿 Elaboración artesanal
+                        </div>
+
+                        <div class="feature">
+                            🌊 Inspirados en el mar
+                        </div>
+
+                        <div class="feature">
+                            🎨 Diseños únicos
+                        </div>
+
+                        <div class="feature">
+                            ♻️ Enfoque ecológico
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- HISTORIA -->
+
+    <section class="story">
+
+        <div class="story-container">
+
+            <div class="mini">
+                Más que un llavero
+            </div>
+
+            <h2>
+                Llévate un pedacito
+                de la costa contigo.
+            </h2>
+
+            <p>
+                EcoBeach nace de una idea sencilla:
+                transformar la inspiración que encontramos
+                en el mar y la naturaleza en pequeños objetos
+                que puedan acompañarnos todos los días.
+
+                <br><br>
+
+                Nuestros llaveros buscan representar la belleza
+                de la costa y convertirse en un recuerdo especial
+                para quienes visitan, conocen o simplemente
+                sienten conexión con el mar.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- BENEFICIOS -->
+
+    <section class="benefits">
+
+        <div class="section-title">
+
+            <div class="mini">
+                ¿Por qué EcoBeach?
+            </div>
+
+            <h2>
+                Hecho para recordar.
+            </h2>
+
+        </div>
+
+
+        <div class="benefits-grid">
+
+
+            <div class="benefit">
+
+                <div class="benefit-icon">
+                    🌊
+                </div>
+
+                <h3>
+                    Inspiración marina
+                </h3>
+
+                <p>
+                    Diseños inspirados en el océano,
+                    la playa y la naturaleza.
+                </p>
+
+            </div>
+
+
+
+            <div class="benefit">
+
+                <div class="benefit-icon">
+                    🎨
+                </div>
+
+                <h3>
+                    Diseños únicos
+                </h3>
+
+                <p>
+                    Cada diseño busca tener su propia
+                    personalidad.
+                </p>
+
+            </div>
+
+
+
+            <div class="benefit">
+
+                <div class="benefit-icon">
+                    🖐️
+                </div>
+
+                <h3>
+                    Hecho con dedicación
+                </h3>
+
+                <p>
+                    Cada pieza es preparada con cuidado
+                    y atención al detalle.
+                </p>
+
+            </div>
+
+
+
+            <div class="benefit">
+
+                <div class="benefit-icon">
+                    💙
+                </div>
+
+                <h3>
+                    Un recuerdo especial
+                </h3>
+
+                <p>
+                    Un pequeño objeto que puede guardar
+                    una gran experiencia.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- CTA -->
+
+    <section class="cta">
+
+        <h2>
+            ¿Quieres llevarte
+            uno contigo?
+        </h2>
+
+        <p>
+            Descubre nuestros diseños y encuentra
+            el llavero que represente tu conexión
+            con el mar.
+        </p>
+
+
+        <!-- Puedes cambiar este enlace -->
+        <a
+            class="cta-button"
+            href="#producto"
+            onclick="alert('¡Gracias por tu interés en EcoBeach! 🌊')"
+        >
+            🐚 CONOCER NUESTROS LLAVEROS
+        </a>
+
+    </section>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        ECOBEACH · Pequeños recuerdos, grandes historias 🌊
+
+    </footer>
+
+
+</main>
+
+
 
 <script>
-  const logo = document.getElementById("logo");
-  const info = document.getElementById("info");
-  const sound = document.getElementById("sound");
 
-  // Crear burbujas dinámicas
-  for (let i = 0; i < 20; i++) {
-    let bubble = document.createElement("div");
-    bubble.classList.add("bubble");
-    bubble.style.left = Math.random() * 100 + "%";
-    bubble.style.animationDuration = (5 + Math.random() * 5) + "s";
-    document.body.appendChild(bubble);
-  }
+    /* =====================================================
+       INTRO → PÁGINA PRINCIPAL
+    ===================================================== */
 
-  // Sonido al iniciar
-  setTimeout(() => {
-    sound.play().catch(() => {});
-  }, 1000);
+    const intro = document.getElementById("intro");
+    const main = document.getElementById("main");
 
-  // Cambio de escena
-  setTimeout(() => {
-    logo.classList.add("fadeOut");
+
+    /*
+       Después de aproximadamente 4 segundos
+       comienza la transición.
+    */
 
     setTimeout(() => {
-      logo.style.display = "none";
-      info.style.display = "block";
-      info.classList.add("fadeIn");
-    }, 1500);
 
-  }, 3500);
+        intro.classList.add("hide");
+
+        setTimeout(() => {
+
+            main.classList.add("show");
+
+            document.body.style.overflow = "auto";
+
+        }, 900);
+
+    }, 4200);
+
+
+
+    /* =====================================================
+       BURBUJAS DINÁMICAS
+    ===================================================== */
+
+    function createBubble() {
+
+        const bubble =
+            document.createElement("div");
+
+        bubble.className = "bubble";
+
+
+        const size =
+            Math.random() * 12 + 5;
+
+
+        bubble.style.width =
+            size + "px";
+
+        bubble.style.height =
+            size + "px";
+
+
+        bubble.style.left =
+            Math.random() * 100 + "%";
+
+
+        bubble.style.animationDuration =
+            (Math.random() * 7 + 6) + "s";
+
+
+        bubble.style.animationDelay =
+            Math.random() * 2 + "s";
+
+
+        document.body.appendChild(bubble);
+
+
+        setTimeout(() => {
+
+            bubble.remove();
+
+        }, 15000);
+
+    }
+
+
+    /*
+       Crear burbujas constantemente
+    */
+
+    setInterval(createBubble, 700);
+
+
+    /* Crear algunas inmediatamente */
+
+    for(let i = 0; i < 12; i++) {
+
+        setTimeout(
+            createBubble,
+            i * 150
+        );
+
+    }
+
+
+    /* =====================================================
+       ANIMACIÓN AL HACER SCROLL
+    ===================================================== */
+
+    const observer =
+        new IntersectionObserver(
+            (entries) => {
+
+                entries.forEach(entry => {
+
+                    if(entry.isIntersecting) {
+
+                        entry.target.style.opacity = "1";
+
+                        entry.target.style.transform =
+                            "translateY(0)";
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.15
+            }
+        );
+
+
+    document
+        .querySelectorAll(
+            ".product-card, .benefit, .story-container"
+        )
+        .forEach(element => {
+
+            element.style.opacity = "0";
+
+            element.style.transform =
+                "translateY(35px)";
+
+            element.style.transition =
+                "opacity 1s ease, transform 1s ease";
+
+            observer.observe(element);
+
+        });
+
 </script>
+
 
 </body>
 </html>
