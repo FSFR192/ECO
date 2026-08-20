@@ -623,6 +623,84 @@
         }
 
 
+        .gallery-section {
+
+            padding: 10px 20px 90px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #062e34,
+                    #041c20
+                );
+        }
+
+        .gallery-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 26px;
+
+            margin-top: 30px;
+        }
+
+        .gallery-item {
+
+            overflow: hidden;
+
+            border-radius: 22px;
+
+            background:
+                rgba(255,255,255,.04);
+
+            border:
+                1px solid
+                rgba(255,255,255,.08);
+
+            box-shadow:
+                0 18px 45px
+                rgba(0,0,0,.18);
+        }
+
+        .gallery-item img {
+
+            width: 100%;
+
+            height: 380px;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition:
+                transform .7s ease;
+        }
+
+        .gallery-item:hover img {
+
+            transform:
+                scale(1.05);
+        }
+
+        .gallery-item figcaption {
+
+            padding: 14px 16px 18px;
+
+            font-size: 13px;
+
+            letter-spacing: .8px;
+
+            color:
+                rgba(255,255,255,.78);
+
+            background:
+                rgba(255,255,255,.02);
+        }
+
+
         .product-info {
 
             padding: 15px;
@@ -960,6 +1038,15 @@
                 padding: 15px;
             }
 
+            .gallery-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item img {
+
+                height: 260px;
+            }
 
             .product-info {
 
@@ -1111,7 +1198,7 @@
                 <div class="product-image">
 
                     <img
-                        src="IMAGEN2.jpeg"
+                        src="LLAVEROS.jpeg"
                         alt="Llaveros EcoBeach"
                     >
 
@@ -1163,6 +1250,54 @@
                     </div>
 
                 </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- GALERÍA -->
+
+    <section class="gallery-section">
+
+        <div class="section-container">
+
+            <div class="section-title">
+
+                <div class="mini">
+                    Proceso EcoBeach
+                </div>
+
+                <h2>
+                    Del diseño a la creación.
+                </h2>
+
+                <p>
+                    Aquí vemos cómo nace cada idea: desde la planificación,
+                    pasando por la elaboración y culminando en una pieza única.
+                </p>
+
+            </div>
+
+            <div class="gallery-grid">
+
+                <figure class="gallery-item">
+                    <img src="planificacion.jpeg" alt="Niños planificando el diseño, materiales y estructura del proyecto en laptop">
+                    <figcaption>Planificación</figcaption>
+                </figure>
+
+                <figure class="gallery-item">
+                    <img src="Elaboración.png" alt="Niños elaborando su proyecto">
+                    <figcaption>Elaboración</figcaption>
+                </figure>
+
+                <figure class="gallery-item">
+                    <img src="diseño final.jpeg" alt="Diseño final del proyecto EcoBeach">
+                    <figcaption>Diseño final</figcaption>
+                </figure>
 
             </div>
 
