@@ -243,8 +243,32 @@
             position: relative;
             z-index: 2;
             max-width: 780px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             animation: heroAppear 1.4s ease forwards;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* LOGO DEL EMPRENDIMIENTO EN HERO */
+        .hero-logo-wrap {
+            margin-bottom: 22px;
+            display: inline-block;
+        }
+
+        .hero-logo {
+            width: 125px;
+            height: 125px;
+            object-fit: cover;
+            border-radius: 26px;
+            box-shadow: 0 12px 35px rgba(91, 224, 207, 0.35), 0 0 0 2px rgba(91, 224, 207, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .hero-logo:hover {
+            transform: scale(1.08) rotate(-2deg);
+            box-shadow: 0 16px 45px rgba(91, 224, 207, 0.5);
         }
 
         @keyframes heroAppear {
@@ -395,9 +419,45 @@
         }
 
         /* =====================================================
-           SECCIÓN PRODUCTO DESTACADO
+           HISTORIA (INFORMACIÓN PRINCIPAL PRIMERO)
         ===================================================== */
-        .product-section {
+        .story {
+            padding: 100px 20px;
+            background: #f1eee5;
+            color: #123b3d;
+            text-align: center;
+        }
+
+        .story-container {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .story .mini {
+            color: #4c9990;
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .story h2 {
+            font-size: clamp(30px, 7vw, 55px);
+            margin-bottom: 25px;
+            line-height: 1.1;
+        }
+
+        .story p {
+            font-size: 17px;
+            line-height: 1.9;
+            color: #456260;
+        }
+
+        /* =====================================================
+           SECCIÓN INFORMACIÓN DEL PRODUCTO Y BENEFICIOS
+        ===================================================== */
+        .product-info-section {
             position: relative;
             padding: 90px 20px;
             background: linear-gradient(180deg, #011417, #062e34);
@@ -449,7 +509,7 @@
             padding: 25px;
             box-shadow: 0 30px 100px rgba(0, 0, 0, .25);
             backdrop-filter: blur(15px);
-            margin-bottom: 80px;
+            margin-bottom: 70px;
         }
 
         .product-image {
@@ -503,7 +563,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
         }
 
         .feature {
@@ -518,9 +578,109 @@
             gap: 8px;
         }
 
+        /* BENEFICIOS */
+        .benefits {
+            padding-top: 20px;
+        }
+
+        .benefits-grid {
+            max-width: 1050px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .benefit {
+            text-align: center;
+            padding: 35px 20px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .07);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit:hover {
+            transform: translateY(-5px);
+            border-color: rgba(91, 224, 207, 0.3);
+        }
+
+        .benefit-icon {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .benefit h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .benefit p {
+            font-size: 13px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, .6);
+        }
+
         /* =====================================================
-           CATÁLOGO DE PRODUCTOS (A1 - A11)
+           GALERÍA (PROCESO CREATIVO)
         ===================================================== */
+        .gallery-section {
+            padding: 90px 20px;
+            background: linear-gradient(180deg, #062e34, #041c20);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 28px;
+            margin-top: 30px;
+            align-items: stretch;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .08);
+            box-shadow: 0 18px 45px rgba(0, 0, 0, .18);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            object-position: center;
+            background: rgba(0, 0, 0, .08);
+            display: block;
+            transition: transform .7s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item figcaption {
+            padding: 16px 18px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: .8px;
+            color: rgba(255, 255, 255, .88);
+            background: rgba(255, 255, 255, .03);
+            text-align: center;
+        }
+
+        /* =====================================================
+           CATÁLOGO DE PRODUCTOS (A1 - A11) - UBICADO ABAJO
+        ===================================================== */
+        .catalog-section {
+            position: relative;
+            padding: 90px 20px;
+            background: linear-gradient(180deg, #041c20, #011417);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
         .catalog-header {
             text-align: center;
             margin-bottom: 35px;
@@ -885,138 +1045,6 @@
         }
 
         /* =====================================================
-           GALERÍA (PROCESO)
-        ===================================================== */
-        .gallery-section {
-            padding: 90px 20px;
-            background: linear-gradient(180deg, #062e34, #041c20);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 28px;
-            margin-top: 30px;
-            align-items: stretch;
-        }
-
-        .gallery-item {
-            overflow: hidden;
-            border-radius: 22px;
-            background: rgba(255, 255, 255, .04);
-            border: 1px solid rgba(255, 255, 255, .08);
-            box-shadow: 0 18px 45px rgba(0, 0, 0, .18);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 420px;
-            object-fit: cover;
-            object-position: center;
-            background: rgba(0, 0, 0, .08);
-            display: block;
-            transition: transform .7s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-
-        .gallery-item figcaption {
-            padding: 16px 18px;
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: .8px;
-            color: rgba(255, 255, 255, .88);
-            background: rgba(255, 255, 255, .03);
-            text-align: center;
-        }
-
-        /* =====================================================
-           HISTORIA
-        ===================================================== */
-        .story {
-            padding: 100px 20px;
-            background: #f1eee5;
-            color: #123b3d;
-            text-align: center;
-        }
-
-        .story-container {
-            max-width: 850px;
-            margin: auto;
-        }
-
-        .story .mini {
-            color: #4c9990;
-            font-size: 11px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .story h2 {
-            font-size: clamp(30px, 7vw, 55px);
-            margin-bottom: 25px;
-            line-height: 1.1;
-        }
-
-        .story p {
-            font-size: 17px;
-            line-height: 1.9;
-            color: #456260;
-        }
-
-        /* =====================================================
-           BENEFICIOS
-        ===================================================== */
-        .benefits {
-            padding: 90px 20px;
-            background: #062e34;
-        }
-
-        .benefits-grid {
-            max-width: 1050px;
-            margin: auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-        }
-
-        .benefit {
-            text-align: center;
-            padding: 35px 20px;
-            border-radius: 22px;
-            background: rgba(255, 255, 255, .04);
-            border: 1px solid rgba(255, 255, 255, .07);
-            transition: transform 0.3s ease;
-        }
-
-        .benefit:hover {
-            transform: translateY(-5px);
-            border-color: rgba(91, 224, 207, 0.3);
-        }
-
-        .benefit-icon {
-            font-size: 36px;
-            margin-bottom: 15px;
-        }
-
-        .benefit h3 {
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-
-        .benefit p {
-            font-size: 13px;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, .6);
-        }
-
-        /* =====================================================
            LLAMADO FINAL (CTA)
         ===================================================== */
         .cta {
@@ -1117,6 +1145,11 @@
             .catalog-grid {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
+
+            .hero-logo {
+                width: 100px;
+                height: 100px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1167,6 +1200,11 @@
         <!-- HERO SECTION -->
         <section class="hero">
             <div class="hero-content">
+                <!-- LOGO DEL EMPRENDIMIENTO EN HERO (SOLICITADO POR EL USUARIO) -->
+                <div class="hero-logo-wrap">
+                    <img src="IMAGEN1.jpeg" alt="Logo EcoBeach" class="hero-logo">
+                </div>
+
                 <div class="eyebrow">
                     🌊 INSPIRADO EN EL MAR DEL DISTRITO DE LOS ÓRGANOS
                 </div>
@@ -1253,18 +1291,41 @@
             </div>
 
             <div class="scroll">
-                ↓ Explora nuestro catálogo de productos
+                ↓ Descubre nuestra historia e información
             </div>
         </section>
 
 
-        <!-- PRODUCTO Y CATÁLOGO DE DISEÑOS -->
-        <section class="product-section" id="producto">
+        <!-- 1. HISTORIA DEL PROYECTO (INFORMACIÓN PRIMERO) -->
+        <section class="story">
+            <div class="story-container">
+                <div class="mini">Más que un llavero</div>
+                <h2>
+                    Llévate un pedacito
+                    de la playa de Los Órganos contigo.
+                </h2>
+                <p>
+                    El proyecto <strong>"Llaveros Ecológicos EcoBeach"</strong>
+                    nace como una iniciativa emprendedora desarrollada por
+                    estudiantes del primer grado de secundaria de la
+                    Institución Educativa Augusto Salazar Bondy.
+                    <br><br>
+                    Tiene como finalidad promover el emprendimiento juvenil,
+                    la creatividad y la conciencia ambiental mediante la
+                    elaboración y comercialización de llaveros artesanales
+                    de resina ecológica.
+                </p>
+            </div>
+        </section>
+
+
+        <!-- 2. INFORMACIÓN DEL PRODUCTO Y BENEFICIOS -->
+        <section class="product-info-section">
             <div class="section-container">
 
                 <div class="section-title">
                     <div class="mini">
-                        Nuestra colección
+                        Sobre nuestro producto
                     </div>
                     <h2>
                         Algo pequeño.
@@ -1278,7 +1339,7 @@
                     </p>
                 </div>
 
-                <!-- Tarjeta Destacada Principal -->
+                <!-- Tarjeta Destacada Informativa -->
                 <div class="product-card">
                     <div class="product-image">
                         <img src="LLAVEROS.jpeg" alt="Llaveros EcoBeach Colección">
@@ -1302,8 +1363,81 @@
                     </div>
                 </div>
 
+                <!-- BENEFICIOS -->
+                <div class="benefits">
+                    <div class="section-title">
+                        <div class="mini">¿Por qué EcoBeach?</div>
+                        <h2>Hecho para recordar.</h2>
+                    </div>
 
-                <!-- CATÁLOGO DE DISEÑOS REALIZADOS (A1 - A11) -->
+                    <div class="benefits-grid">
+                        <div class="benefit">
+                            <div class="benefit-icon">🌊</div>
+                            <h3>Inspiración marina</h3>
+                            <p>Diseños inspirados en el océano y las playas de Los Órganos.</p>
+                        </div>
+
+                        <div class="benefit">
+                            <div class="benefit-icon">🎨</div>
+                            <h3>Diseños únicos</h3>
+                            <p>Cada pieza tiene su propia personalidad y combinaciones irrepetibles.</p>
+                        </div>
+
+                        <div class="benefit">
+                            <div class="benefit-icon">🖐️</div>
+                            <h3>Hecho con dedicación</h3>
+                            <p>Preparado a mano por estudiantes emprendedores con cuidado y esmero.</p>
+                        </div>
+
+                        <div class="benefit">
+                            <div class="benefit-icon">💙</div>
+                            <h3>Un recuerdo especial</h3>
+                            <p>Un pequeño objeto ecológico que guarda una inolvidable experiencia.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- 3. SECCIÓN DE PROCESO CREATIVO (GALERÍA) -->
+        <section class="gallery-section">
+            <div class="section-container">
+                <div class="section-title">
+                    <div class="mini">Proceso EcoBeach</div>
+                    <h2>Del diseño a la creación.</h2>
+                    <p>
+                        Aquí vemos cómo nace cada idea: desde la planificación,
+                        pasando por la elaboración y culminando en una pieza única.
+                    </p>
+                </div>
+
+                <div class="gallery-grid">
+                    <figure class="gallery-item">
+                        <img src="planificacion.jpeg"
+                            alt="Niños planificando el diseño, materiales y estructura del proyecto en laptop">
+                        <figcaption>Planificación</figcaption>
+                    </figure>
+
+                    <figure class="gallery-item">
+                        <img src="Elaboración.png" alt="Niños elaborando su proyecto">
+                        <figcaption>Elaboración</figcaption>
+                    </figure>
+
+                    <figure class="gallery-item">
+                        <img src="diseño final.jpeg" alt="Diseño final del proyecto EcoBeach">
+                        <figcaption>Diseño final</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 4. CATÁLOGO DE DISEÑOS REALIZADOS (UBICADO HACIA ABAJO) -->
+        <section class="catalog-section" id="catalogo">
+            <div class="section-container">
+
                 <div class="catalog-header">
                     <div class="section-title" style="margin-bottom: 25px;">
                         <div class="mini">Catálogo de Diseños Realizados</div>
@@ -1339,7 +1473,7 @@
                 </div>
 
 
-                <!-- Grid Dinámico de Tarjetas de Productos -->
+                <!-- Grid Dinámico de Tarjetas de Productos (A1 - A11) -->
                 <div class="catalog-grid" id="catalogGrid">
 
                     <!-- A8: Inicial A -->
@@ -1546,97 +1680,6 @@
         </section>
 
 
-        <!-- SECCIÓN DE PROCESO CREATIVO (GALERÍA) -->
-        <section class="gallery-section">
-            <div class="section-container">
-                <div class="section-title">
-                    <div class="mini">Proceso EcoBeach</div>
-                    <h2>Del diseño a la creación.</h2>
-                    <p>
-                        Aquí vemos cómo nace cada idea: desde la planificación,
-                        pasando por la elaboración y culminando en una pieza única.
-                    </p>
-                </div>
-
-                <div class="gallery-grid">
-                    <figure class="gallery-item">
-                        <img src="planificacion.jpeg"
-                            alt="Niños planificando el diseño, materiales y estructura del proyecto en laptop">
-                        <figcaption>Planificación</figcaption>
-                    </figure>
-
-                    <figure class="gallery-item">
-                        <img src="Elaboración.png" alt="Niños elaborando su proyecto">
-                        <figcaption>Elaboración</figcaption>
-                    </figure>
-
-                    <figure class="gallery-item">
-                        <img src="diseño final.jpeg" alt="Diseño final del proyecto EcoBeach">
-                        <figcaption>Diseño final</figcaption>
-                    </figure>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- HISTORIA DEL PROYECTO -->
-        <section class="story">
-            <div class="story-container">
-                <div class="mini">Más que un llavero</div>
-                <h2>
-                    Llévate un pedacito
-                    de la playa de Los Órganos contigo.
-                </h2>
-                <p>
-                    El proyecto <strong>"Llaveros Ecológicos EcoBeach"</strong>
-                    nace como una iniciativa emprendedora desarrollada por
-                    estudiantes del primer grado de secundaria de la
-                    Institución Educativa Augusto Salazar Bondy.
-                    <br><br>
-                    Tiene como finalidad promover el emprendimiento juvenil,
-                    la creatividad y la conciencia ambiental mediante la
-                    elaboración y comercialización de llaveros artesanales
-                    de resina ecológica.
-                </p>
-            </div>
-        </section>
-
-
-        <!-- BENEFICIOS -->
-        <section class="benefits">
-            <div class="section-title">
-                <div class="mini">¿Por qué EcoBeach?</div>
-                <h2>Hecho para recordar.</h2>
-            </div>
-
-            <div class="benefits-grid">
-                <div class="benefit">
-                    <div class="benefit-icon">🌊</div>
-                    <h3>Inspiración marina</h3>
-                    <p>Diseños inspirados en el océano y las playas de Los Órganos.</p>
-                </div>
-
-                <div class="benefit">
-                    <div class="benefit-icon">🎨</div>
-                    <h3>Diseños únicos</h3>
-                    <p>Cada pieza tiene su propia personalidad y combinaciones irrepetibles.</p>
-                </div>
-
-                <div class="benefit">
-                    <div class="benefit-icon">🖐️</div>
-                    <h3>Hecho con dedicación</h3>
-                    <p>Preparado a mano por estudiantes emprendedores con cuidado y esmero.</p>
-                </div>
-
-                <div class="benefit">
-                    <div class="benefit-icon">💙</div>
-                    <h3>Un recuerdo especial</h3>
-                    <p>Un pequeño objeto ecológico que guarda una inolvidable experiencia.</p>
-                </div>
-            </div>
-        </section>
-
-
         <!-- LLAMADO FINAL (CTA) -->
         <section class="cta">
             <h2>¿Quieres llevarte uno contigo?</h2>
@@ -1646,7 +1689,7 @@
                 con el mar de Los Órganos.
             </p>
 
-            <a class="cta-button" href="#producto"
+            <a class="cta-button" href="#catalogo"
                 onclick="alert('¡Gracias por tu interés en EcoBeach! 🌊 Revisa el catálogo arriba para elegir tu inicial favorita.')">
                 🐚 CONOCER NUESTROS LLAVEROS
             </a>
