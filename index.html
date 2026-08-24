@@ -1689,10 +1689,14 @@
                 con el mar de Los Órganos.
             </p>
 
-            <a class="cta-button" href="#catalogo"
-                onclick="alert('¡Gracias por tu interés en EcoBeach! 🌊 Revisa el catálogo arriba para elegir tu inicial favorita.')">
-                🐚 CONOCER NUESTROS LLAVEROS
-            </a>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a class="cta-button" href="#catalogo">
+                    🐚 VER CATÁLOGO DE LLAVEROS
+                </a>
+                <a class="cta-button" style="background: linear-gradient(135deg, #25D366, #128C7E); color: white;" href="https://wa.me/51948372086?text=Hola%20EcoBeach!%20%F0%9F%8D%9A%20Quisiera%20pedir%20un%20llavero%20ecol%C3%B3gico." target="_blank">
+                    💬 PEDIR POR WHATSAPP (948 372 086)
+                </a>
+            </div>
         </section>
 
 
@@ -1865,7 +1869,7 @@
             document.getElementById('modalSpec3').innerText = data.spec3;
 
             const waMsg = encodeURIComponent(`Hola EcoBeach! 🌊 Estoy interesado en el llavero ${data.title}. ¿Podrían brindarme más información?`);
-            document.getElementById('modalWhatsappBtn').href = `https://wa.me/?text=${waMsg}`;
+            document.getElementById('modalWhatsappBtn').href = `https://wa.me/51948372086?text=${waMsg}`;
 
             const modal = document.getElementById('productModal');
             modal.classList.add('active');
