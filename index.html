@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="theme-color" content="#062f35">
-    <meta name="description" content="EcoBeach - Llaveros ecológicos inspirados en el mar y la naturaleza.">
+    <meta name="description"
+        content="EcoBeach - Llaveros ecológicos inspirados en el mar y la naturaleza del distrito de Los Órganos.">
 
     <title>EcoBeach | Pequeños recuerdos, grandes historias</title>
 
     <style>
-
         /* =====================================================
-           CONFIGURACIÓN GENERAL
+           CONFIGURACIÓN GENERAL & VARIABLES
         ===================================================== */
+        :root {
+            --bg-dark: #031c21;
+            --bg-card: rgba(255, 255, 255, 0.045);
+            --border-card: rgba(255, 255, 255, 0.10);
+            --accent-cyan: #5be0cf;
+            --accent-light: #9ce9df;
+            --accent-gold: #f4d068;
+            --text-muted: rgba(255, 255, 255, 0.72);
+        }
 
         * {
             margin: 0;
@@ -26,8 +36,8 @@
         }
 
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #031c21;
+            font-family: 'Segoe UI', system-ui, -apple-system, Arial, sans-serif;
+            background: var(--bg-dark);
             color: white;
             overflow-x: hidden;
         }
@@ -36,32 +46,18 @@
             font-family: inherit;
         }
 
-
         /* =====================================================
            PANTALLA DE INTRODUCCIÓN
         ===================================================== */
-
         #intro {
             position: fixed;
             inset: 0;
             z-index: 9999;
-
             display: flex;
             justify-content: center;
             align-items: center;
-
-            background:
-                radial-gradient(
-                    circle at center,
-                    #155b63 0%,
-                    #083a42 35%,
-                    #031c21 75%,
-                    #010b0d 100%
-                );
-
-            transition:
-                opacity 1.4s ease,
-                visibility 1.4s ease;
+            background: radial-gradient(circle at center, #155b63 0%, #083a42 35%, #031c21 75%, #010b0d 100%);
+            transition: opacity 1.4s ease, visibility 1.4s ease;
         }
 
         #intro.hide {
@@ -70,27 +66,20 @@
             pointer-events: none;
         }
 
-
-        /* Luz detrás del logo */
-
         .intro-glow {
             position: absolute;
-
             width: 280px;
             height: 280px;
-
             border-radius: 50%;
-
             background: rgba(91, 224, 207, 0.18);
-
             filter: blur(45px);
-
             animation: pulseGlow 3s infinite ease-in-out;
         }
 
         @keyframes pulseGlow {
 
-            0%, 100% {
+            0%,
+            100% {
                 transform: scale(0.8);
                 opacity: 0.4;
             }
@@ -101,44 +90,24 @@
             }
         }
 
-
-        /* Logo */
-
         #logo {
             position: relative;
             z-index: 2;
-
             width: min(72vw, 330px);
             max-height: 330px;
-
             object-fit: contain;
-
             border-radius: 25px;
-
             opacity: 0;
-
-            transform:
-                scale(0.55)
-                translateY(30px);
-
+            transform: scale(0.55) translateY(30px);
             filter: blur(8px);
-
-            animation:
-                logoAppear 2.3s
-                cubic-bezier(.17,.67,.35,1.35)
-                forwards;
-
-            box-shadow:
-                0 0 80px rgba(84, 231, 211, 0.15);
+            animation: logoAppear 2.3s cubic-bezier(.17, .67, .35, 1.35) forwards;
+            box-shadow: 0 0 80px rgba(84, 231, 211, 0.15);
         }
 
         @keyframes logoAppear {
-
             0% {
                 opacity: 0;
-                transform:
-                    scale(0.55)
-                    translateY(30px);
+                transform: scale(0.55) translateY(30px);
                 filter: blur(8px);
             }
 
@@ -149,92 +118,59 @@
 
             100% {
                 opacity: 1;
-                transform:
-                    scale(1)
-                    translateY(0);
+                transform: scale(1) translateY(0);
                 filter: blur(0);
             }
         }
 
-
-        /* Texto de introducción */
-
         .intro-text {
             position: absolute;
-
             bottom: 14%;
-
             width: 100%;
-
             text-align: center;
-
             opacity: 0;
-
-            animation:
-                introTextAppear 1.5s ease
-                1.2s forwards;
+            animation: introTextAppear 1.5s ease 1.2s forwards;
         }
 
         .intro-text small {
             display: block;
-
             text-transform: uppercase;
-
             letter-spacing: 5px;
-
             font-size: 10px;
-
             color: #9ce9df;
-
             margin-bottom: 8px;
         }
 
         .intro-text span {
             font-size: 14px;
-
             letter-spacing: 2px;
-
-            color: rgba(255,255,255,.85);
+            color: rgba(255, 255, 255, .85);
         }
 
         @keyframes introTextAppear {
-
             to {
                 opacity: 1;
             }
         }
 
-
         /* =====================================================
            BURBUJAS
         ===================================================== */
-
         .bubble {
             position: fixed;
-
             bottom: -30px;
-
             width: 8px;
             height: 8px;
-
-            border: 1px solid rgba(255,255,255,.35);
-
+            border: 1px solid rgba(255, 255, 255, .35);
             border-radius: 50%;
-
             pointer-events: none;
-
             animation: bubbleUp linear forwards;
-
             z-index: 1;
         }
 
         @keyframes bubbleUp {
-
             0% {
-                transform:
-                    translateY(0)
-                    scale(.7);
-
+                transform: translateY(0) scale(.7);
                 opacity: 0;
             }
 
@@ -243,24 +179,17 @@
             }
 
             100% {
-                transform:
-                    translateY(-110vh)
-                    scale(1.4);
-
+                transform: translateY(-110vh) scale(1.4);
                 opacity: 0;
             }
         }
 
-
         /* =====================================================
            PÁGINA PRINCIPAL
         ===================================================== */
-
         #main {
             opacity: 0;
-
             transition: opacity 1.2s ease;
-
             pointer-events: none;
         }
 
@@ -269,92 +198,56 @@
             pointer-events: auto;
         }
 
-
         /* =====================================================
            HERO
         ===================================================== */
-
         .hero {
-
             position: relative;
-
             min-height: 100vh;
-
             display: flex;
-
+            flex-direction: column;
             align-items: center;
-
             justify-content: center;
-
             text-align: center;
-
-            padding: 40px 22px;
-
+            padding: 50px 22px 30px;
             overflow: hidden;
-
             background:
-                linear-gradient(
-                    180deg,
-                    rgba(2,38,44,.25),
-                    rgba(1,17,20,.95)
-                ),
-                radial-gradient(
-                    circle at 50% 20%,
-                    #11616b,
-                    #03252b 55%,
-                    #011417
-                );
+                linear-gradient(180deg, rgba(2, 38, 44, .25), rgba(1, 17, 20, .95)),
+                radial-gradient(circle at 50% 20%, #11616b, #03252b 55%, #011417);
         }
-
-
-        /* círculos decorativos */
 
         .hero::before,
         .hero::after {
-
             content: "";
-
             position: absolute;
-
             border-radius: 50%;
-
-            border: 1px solid rgba(127,231,216,.15);
-
+            border: 1px solid rgba(127, 231, 216, .15);
             pointer-events: none;
         }
 
         .hero::before {
-
             width: 500px;
             height: 500px;
-
             top: -300px;
             right: -220px;
         }
 
         .hero::after {
-
             width: 350px;
             height: 350px;
-
             bottom: -230px;
             left: -160px;
         }
 
-
         .hero-content {
-
             position: relative;
-
             z-index: 2;
-
-            max-width: 700px;
-
+            max-width: 780px;
+            margin-bottom: 30px;
             animation: heroAppear 1.4s ease forwards;
         }
 
         @keyframes heroAppear {
-
             from {
                 opacity: 0;
                 transform: translateY(30px);
@@ -366,1297 +259,1714 @@
             }
         }
 
-
         .eyebrow {
-
             display: inline-block;
-
-            padding: 8px 16px;
-
-            border:
-
-                1px solid
-                rgba(151,237,224,.35);
-
+            padding: 8px 18px;
+            border: 1px solid rgba(151, 237, 224, .35);
             border-radius: 50px;
-
             color: #9ce9df;
-
             font-size: 11px;
-
             letter-spacing: 3px;
-
             text-transform: uppercase;
-
             margin-bottom: 22px;
-
-            background:
-                rgba(255,255,255,.04);
-
+            background: rgba(255, 255, 255, .04);
             backdrop-filter: blur(10px);
         }
 
-
         .hero h1 {
-
-            font-size: clamp(42px, 12vw, 90px);
-
-            line-height: .95;
-
-            letter-spacing: -4px;
-
+            font-size: clamp(38px, 10vw, 85px);
+            line-height: 1;
+            letter-spacing: -3px;
             margin-bottom: 20px;
+            font-weight: 800;
         }
 
-
         .hero h1 span {
-
             display: block;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    #ffffff,
-                    #8de5d9,
-                    #ffffff
-                );
-
+            background: linear-gradient(90deg, #ffffff, #8de5d9, #ffffff);
             background-size: 200%;
-
             -webkit-background-clip: text;
-
             background-clip: text;
-
             color: transparent;
-
             animation: shine 4s linear infinite;
         }
 
         @keyframes shine {
-
             to {
                 background-position: 200%;
             }
         }
 
-
         .hero p {
-
-            max-width: 580px;
-
+            max-width: 620px;
             margin: auto;
-
-            font-size: 17px;
-
+            font-size: 18px;
             line-height: 1.7;
-
-            color: rgba(255,255,255,.72);
+            color: rgba(255, 255, 255, .78);
         }
 
+        /* Hero Marquee Showcase Strip */
+        .hero-ticker {
+            width: 100%;
+            max-width: 1100px;
+            margin-top: 25px;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        }
+
+        .ticker-track {
+            display: flex;
+            gap: 15px;
+            width: max-content;
+            animation: tickerScroll 28s linear infinite;
+        }
+
+        .ticker-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes tickerScroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px 8px 10px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 40px;
+            backdrop-filter: blur(12px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .ticker-item:hover {
+            background: rgba(91, 224, 207, 0.18);
+            border-color: rgba(91, 224, 207, 0.4);
+            transform: translateY(-3px) scale(1.03);
+        }
+
+        .ticker-item img {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(91, 224, 207, 0.5);
+        }
+
+        .ticker-item span {
+            font-size: 13px;
+            font-weight: 600;
+            color: #d1f7f2;
+        }
 
         .scroll {
-
-            position: absolute;
-
-            bottom: 25px;
-
-            left: 50%;
-
-            transform: translateX(-50%);
-
-            color: rgba(255,255,255,.5);
-
+            position: relative;
+            margin-top: 30px;
+            color: rgba(255, 255, 255, .5);
             font-size: 10px;
-
             letter-spacing: 3px;
-
             text-transform: uppercase;
-
             animation: floating 2s infinite ease-in-out;
         }
 
         @keyframes floating {
 
-            0%,100% {
-                transform:
-                    translate(-50%,0);
+            0%,
+            100% {
+                transform: translateY(0);
             }
 
             50% {
-                transform:
-                    translate(-50%,8px);
+                transform: translateY(8px);
             }
         }
 
-
         /* =====================================================
-           SECCIÓN PRODUCTO
+           SECCIÓN PRODUCTO DESTACADO
         ===================================================== */
-
         .product-section {
-
             position: relative;
-
             padding: 90px 20px;
-
-            background:
-                linear-gradient(
-                    180deg,
-                    #011417,
-                    #062e34
-                );
+            background: linear-gradient(180deg, #011417, #062e34);
         }
-
 
         .section-container {
-
-            max-width: 1050px;
-
+            max-width: 1100px;
             margin: auto;
         }
-
 
         .section-title {
-
             text-align: center;
-
-            margin-bottom: 55px;
+            margin-bottom: 50px;
         }
-
 
         .section-title .mini {
-
             color: #79d8cc;
-
             font-size: 11px;
-
             letter-spacing: 4px;
-
             text-transform: uppercase;
-
             margin-bottom: 12px;
+            font-weight: 700;
         }
-
 
         .section-title h2 {
-
             font-size: clamp(30px, 7vw, 54px);
-
             line-height: 1.05;
-
             margin-bottom: 15px;
+            font-weight: 800;
         }
-
 
         .section-title p {
-
-            max-width: 650px;
-
+            max-width: 680px;
             margin: auto;
-
-            color: rgba(255,255,255,.65);
-
+            color: rgba(255, 255, 255, .68);
             line-height: 1.7;
+            font-size: 16px;
         }
 
-
-        /* Tarjeta */
-
+        /* Tarjeta Principal */
         .product-card {
-
             display: grid;
-
-            grid-template-columns:
-                1fr 1fr;
-
+            grid-template-columns: 1fr 1fr;
             gap: 50px;
-
             align-items: center;
-
-            background:
-                rgba(255,255,255,.045);
-
-            border:
-                1px solid
-                rgba(255,255,255,.10);
-
+            background: rgba(255, 255, 255, .045);
+            border: 1px solid rgba(255, 255, 255, .10);
             border-radius: 30px;
-
             padding: 25px;
-
-            box-shadow:
-                0 30px 100px
-                rgba(0,0,0,.25);
-
-            backdrop-filter:
-                blur(15px);
+            box-shadow: 0 30px 100px rgba(0, 0, 0, .25);
+            backdrop-filter: blur(15px);
+            margin-bottom: 80px;
         }
-
 
         .product-image {
-
             position: relative;
-
             overflow: hidden;
-
             border-radius: 22px;
-
             background: #082d32;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
         }
-
 
         .product-image img {
-
             width: 100%;
-
             display: block;
-
-            transition:
-                transform .8s ease;
+            transition: transform .8s ease;
         }
-
 
         .product-image:hover img {
-
-            transform:
-                scale(1.05);
+            transform: scale(1.05);
         }
 
+        .product-info {
+            padding: 15px;
+        }
 
+        .product-info .tag {
+            color: #80e2d5;
+            text-transform: uppercase;
+            font-size: 10px;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            display: inline-block;
+            background: rgba(91, 224, 207, 0.1);
+            padding: 5px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(91, 224, 207, 0.2);
+        }
+
+        .product-info h3 {
+            font-size: 34px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .product-info p {
+            color: rgba(255, 255, 255, .72);
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .feature {
+            padding: 14px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .06);
+            font-size: 13px;
+            color: rgba(255, 255, 255, .85);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* =====================================================
+           CATÁLOGO DE PRODUCTOS (A1 - A11)
+        ===================================================== */
+        .catalog-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .catalog-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: rgba(255, 255, 255, 0.75);
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .filter-btn:hover {
+            background: rgba(91, 224, 207, 0.15);
+            border-color: rgba(91, 224, 207, 0.35);
+            color: white;
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #156d78, #0a4750);
+            border-color: var(--accent-cyan);
+            color: white;
+            box-shadow: 0 4px 20px rgba(91, 224, 207, 0.3);
+        }
+
+        /* Selector de Iniciales en pills */
+        .initials-selector {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 40px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .initial-pill {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .initial-pill:hover,
+        .initial-pill.active {
+            background: var(--accent-cyan);
+            color: #031c21;
+            border-color: var(--accent-cyan);
+            transform: scale(1.15);
+            box-shadow: 0 0 15px rgba(91, 224, 207, 0.6);
+        }
+
+        .initial-pill.pill-special {
+            width: auto;
+            padding: 0 16px;
+            border-radius: 25px;
+            font-size: 12px;
+        }
+
+        /* Grid de Productos */
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .catalog-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .catalog-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(91, 224, 207, 0.4);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35), 0 0 30px rgba(91, 224, 207, 0.15);
+        }
+
+        .catalog-card-img-wrap {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            overflow: hidden;
+            background: #052126;
+            cursor: pointer;
+        }
+
+        .catalog-card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.7s ease;
+        }
+
+        .catalog-card:hover .catalog-card-img-wrap img {
+            transform: scale(1.08);
+        }
+
+        .catalog-card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(3, 28, 33, 0.75);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(91, 224, 207, 0.3);
+            color: var(--accent-light);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 6px 14px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        .catalog-card-body {
+            padding: 22px 20px 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .catalog-card-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        .catalog-card-desc {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.6;
+            margin-bottom: 18px;
+            flex-grow: 1;
+        }
+
+        .catalog-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 15px;
+            margin-top: auto;
+        }
+
+        .catalog-card-material {
+            font-size: 11px;
+            color: var(--accent-cyan);
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-view-detail {
+            background: rgba(91, 224, 207, 0.12);
+            border: 1px solid rgba(91, 224, 207, 0.3);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-view-detail:hover {
+            background: var(--accent-cyan);
+            color: #031c21;
+            box-shadow: 0 4px 15px rgba(91, 224, 207, 0.4);
+        }
+
+        /* =====================================================
+           VISOR MODAL / LIGHTBOX
+        ===================================================== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background: rgba(1, 15, 18, 0.85);
+            backdrop-filter: blur(15px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-container {
+            background: linear-gradient(145deg, #062e34, #021a1e);
+            border: 1px solid rgba(91, 224, 207, 0.25);
+            border-radius: 30px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.6), 0 0 50px rgba(91, 224, 207, 0.2);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(235, 87, 87, 0.8);
+            transform: rotate(90deg);
+        }
+
+        .modal-image-col {
+            position: relative;
+            background: #021417;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 380px;
+        }
+
+        .modal-image-col img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-info-col {
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .modal-tag {
+            color: var(--accent-cyan);
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .modal-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            line-height: 1.1;
+        }
+
+        .modal-desc {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .modal-specs {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 30px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 16px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .modal-spec-item {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.85);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-whatsapp-order {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-whatsapp-order:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.45);
+        }
+
+        /* =====================================================
+           GALERÍA (PROCESO)
+        ===================================================== */
         .gallery-section {
-
-            padding: 10px 20px 90px;
-
-            background:
-                linear-gradient(
-                    180deg,
-                    #062e34,
-                    #041c20
-                );
+            padding: 90px 20px;
+            background: linear-gradient(180deg, #062e34, #041c20);
         }
 
         .gallery-grid {
-
             display: grid;
-
-            grid-template-columns:
-                repeat(3, minmax(0, 1fr));
-
+            grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 28px;
-
             margin-top: 30px;
-
             align-items: stretch;
         }
 
         .gallery-item {
-
             overflow: hidden;
-
             border-radius: 22px;
-
-            background:
-                rgba(255,255,255,.04);
-
-            border:
-                1px solid
-                rgba(255,255,255,.08);
-
-            box-shadow:
-                0 18px 45px
-                rgba(0,0,0,.18);
-
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .08);
+            box-shadow: 0 18px 45px rgba(0, 0, 0, .18);
             display: flex;
-
             flex-direction: column;
         }
 
         .gallery-item img {
-
             width: 100%;
-
             height: 420px;
-
             object-fit: cover;
-
             object-position: center;
-
-            background:
-                rgba(0,0,0,.08);
-
+            background: rgba(0, 0, 0, .08);
             display: block;
-
-            transition:
-                transform .7s ease;
-        }
-
-        .gallery-item:nth-child(2) img {
-
-            object-position: center center;
+            transition: transform .7s ease;
         }
 
         .gallery-item:hover img {
-
-            transform:
-                scale(1.05);
+            transform: scale(1.05);
         }
 
         .gallery-item figcaption {
-
-            padding: 14px 16px 18px;
-
-            font-size: 13px;
-
+            padding: 16px 18px;
+            font-size: 14px;
+            font-weight: 600;
             letter-spacing: .8px;
-
-            color:
-                rgba(255,255,255,.78);
-
-            background:
-                rgba(255,255,255,.02);
+            color: rgba(255, 255, 255, .88);
+            background: rgba(255, 255, 255, .03);
+            text-align: center;
         }
-
-
-        .product-info {
-
-            padding: 15px;
-        }
-
-
-        .product-info .tag {
-
-            color: #80e2d5;
-
-            text-transform: uppercase;
-
-            font-size: 10px;
-
-            letter-spacing: 3px;
-
-            margin-bottom: 15px;
-
-            display: block;
-        }
-
-
-        .product-info h3 {
-
-            font-size: 32px;
-
-            margin-bottom: 20px;
-        }
-
-
-        .product-info p {
-
-            color:
-                rgba(255,255,255,.68);
-
-            line-height: 1.8;
-
-            margin-bottom: 25px;
-        }
-
-
-        /* Características */
-
-        .features {
-
-            display: grid;
-
-            grid-template-columns:
-                1fr 1fr;
-
-            gap: 12px;
-
-            margin-bottom: 30px;
-        }
-
-
-        .feature {
-
-            padding: 14px;
-
-            border-radius: 14px;
-
-            background:
-                rgba(255,255,255,.04);
-
-            border:
-                1px solid
-                rgba(255,255,255,.06);
-
-            font-size: 13px;
-
-            color:
-                rgba(255,255,255,.82);
-        }
-
 
         /* =====================================================
            HISTORIA
         ===================================================== */
-
         .story {
-
             padding: 100px 20px;
-
-            background:
-                #f1eee5;
-
+            background: #f1eee5;
             color: #123b3d;
-
             text-align: center;
         }
 
-
         .story-container {
-
             max-width: 850px;
-
             margin: auto;
         }
 
-
         .story .mini {
-
             color: #4c9990;
-
             font-size: 11px;
-
             letter-spacing: 4px;
-
             text-transform: uppercase;
-
             margin-bottom: 15px;
+            font-weight: 700;
         }
-
 
         .story h2 {
-
-            font-size:
-                clamp(30px,7vw,55px);
-
+            font-size: clamp(30px, 7vw, 55px);
             margin-bottom: 25px;
+            line-height: 1.1;
         }
-
 
         .story p {
-
             font-size: 17px;
-
             line-height: 1.9;
-
             color: #456260;
         }
-
 
         /* =====================================================
            BENEFICIOS
         ===================================================== */
-
         .benefits {
-
             padding: 90px 20px;
-
-            background:
-                #062e34;
+            background: #062e34;
         }
-
 
         .benefits-grid {
-
-            max-width: 1000px;
-
+            max-width: 1050px;
             margin: auto;
-
             display: grid;
-
-            grid-template-columns:
-                repeat(4,1fr);
-
-            gap: 15px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
         }
-
 
         .benefit {
-
             text-align: center;
-
-            padding: 30px 15px;
-
+            padding: 35px 20px;
             border-radius: 22px;
-
-            background:
-                rgba(255,255,255,.04);
-
-            border:
-                1px solid
-                rgba(255,255,255,.07);
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .07);
+            transition: transform 0.3s ease;
         }
 
+        .benefit:hover {
+            transform: translateY(-5px);
+            border-color: rgba(91, 224, 207, 0.3);
+        }
 
         .benefit-icon {
-
-            font-size: 30px;
-
+            font-size: 36px;
             margin-bottom: 15px;
         }
 
-
         .benefit h3 {
-
-            font-size: 15px;
-
+            font-size: 16px;
             margin-bottom: 10px;
         }
 
-
         .benefit p {
-
-            font-size: 12px;
-
+            font-size: 13px;
             line-height: 1.6;
-
-            color:
-                rgba(255,255,255,.55);
+            color: rgba(255, 255, 255, .6);
         }
-
 
         /* =====================================================
-           LLAMADO FINAL
+           LLAMADO FINAL (CTA)
         ===================================================== */
-
         .cta {
-
             position: relative;
-
             padding: 110px 20px;
-
             text-align: center;
-
             overflow: hidden;
-
-            background:
-                radial-gradient(
-                    circle at center,
-                    #0a6971,
-                    #032b31 55%,
-                    #011518
-                );
+            background: radial-gradient(circle at center, #0a6971, #032b31 55%, #011518);
         }
 
-
         .cta h2 {
-
-            font-size:
-                clamp(32px,8vw,65px);
-
+            font-size: clamp(32px, 8vw, 65px);
             line-height: 1;
-
             margin-bottom: 20px;
         }
 
-
         .cta p {
-
-            color:
-                rgba(255,255,255,.65);
-
-            max-width: 550px;
-
-            margin:
-                0 auto 30px;
-
+            color: rgba(255, 255, 255, .7);
+            max-width: 580px;
+            margin: 0 auto 35px;
             line-height: 1.7;
+            font-size: 17px;
         }
-
 
         .cta-button {
-
             display: inline-flex;
-
             align-items: center;
-
             justify-content: center;
-
-            padding:
-                16px 28px;
-
+            padding: 18px 36px;
             border-radius: 50px;
-
             border: none;
-
-            background:
-                #f5efe1;
-
+            background: #f5efe1;
             color: #08393d;
-
-            font-weight: bold;
-
-            font-size: 14px;
-
+            font-weight: 800;
+            font-size: 15px;
             cursor: pointer;
-
             text-decoration: none;
-
-            transition:
-                transform .3s ease,
-                box-shadow .3s ease;
+            transition: transform .3s ease, box-shadow .3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
-
 
         .cta-button:hover {
-
-            transform:
-                translateY(-4px)
-                scale(1.03);
-
-            box-shadow:
-                0 15px 35px
-                rgba(0,0,0,.3);
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, .35);
         }
-
 
         /* =====================================================
            FOOTER
         ===================================================== */
-
         footer {
-
-            padding: 30px 20px;
-
+            padding: 35px 20px;
             text-align: center;
-
             background: #011417;
-
-            color:
-                rgba(255,255,255,.4);
-
-            font-size: 11px;
-
+            color: rgba(255, 255, 255, .45);
+            font-size: 12px;
             letter-spacing: 1px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-
         /* =====================================================
-           RESPONSIVE
+           RESPONSIVE DESIGN
         ===================================================== */
-
-        @media (max-width: 750px) {
-
-            .product-card {
-
+        @media (max-width: 880px) {
+            .modal-container {
                 grid-template-columns: 1fr;
-
-                gap: 25px;
-
-                padding: 15px;
+                max-height: 85vh;
             }
 
-            .gallery-grid {
+            .modal-image-col {
+                min-height: 280px;
+                max-height: 320px;
+            }
 
+            .modal-info-col {
+                padding: 25px 20px;
+            }
+
+            .product-card {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 750px) {
+            .gallery-grid {
                 grid-template-columns: 1fr;
             }
 
             .gallery-item img {
-
-                height: 420px;
-
-                object-fit: contain;
-
-                object-position: center;
+                height: 380px;
             }
-
-            .gallery-item:nth-child(2) img {
-
-                object-fit: cover;
-
-                object-position: center center;
-            }
-
-            .product-info {
-
-                padding: 10px 5px 20px;
-            }
-
 
             .benefits-grid {
-
-                grid-template-columns:
-                    1fr 1fr;
+                grid-template-columns: 1fr 1fr;
             }
 
-
-            .hero h1 {
-
-                letter-spacing: -2px;
+            .catalog-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
         }
 
-
-        @media (max-width: 430px) {
-
+        @media (max-width: 480px) {
             .benefits-grid {
-
                 grid-template-columns: 1fr;
             }
-
 
             .features {
-
                 grid-template-columns: 1fr;
             }
 
-
             .hero p {
-
                 font-size: 15px;
             }
-        }
 
+            .catalog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .initials-selector {
+                border-radius: 20px;
+            }
+        }
     </style>
 </head>
 
 
 <body>
 
-
-<!-- =========================================================
-     INTRO
-========================================================= -->
-
-<div id="intro">
-
-    <div class="intro-glow"></div>
-
-    <img
-        id="logo"
-        src="IMAGEN1.jpeg"
-        alt="Logo EcoBeach"
-    >
-
-    <div class="intro-text">
-
-        <small>Una nueva forma de recordar</small>
-
-        <span>Descubre EcoBeach</span>
-
+    <!-- =========================================================
+         INTRO SCREEN
+    ========================================================= -->
+    <div id="intro">
+        <div class="intro-glow"></div>
+        <img id="logo" src="IMAGEN1.jpeg" alt="Logo EcoBeach">
+        <div class="intro-text">
+            <small>Una nueva forma de recordar</small>
+            <span>Descubre EcoBeach</span>
+        </div>
     </div>
 
-</div>
 
+    <!-- =========================================================
+         CONTENIDO PRINCIPAL
+    ========================================================= -->
+    <main id="main">
 
-
-<!-- =========================================================
-     CONTENIDO PRINCIPAL
-========================================================= -->
-
-<main id="main">
-
-
-    <!-- HERO -->
-
-    <section class="hero">
-
-        <div class="hero-content">
-
-            <div class="eyebrow">
-                🌊 Inspirado por el mar
-            </div>
-
-            <h1>
-                Pequeños recuerdos,
-                <span>grandes historias.</span>
-            </h1>
-
-            <p>
-                Bienvenido a <strong>EcoBeach</strong>.
-                Descubre nuestros llaveros ecológicos de resina,
-                creados para llevar contigo un pequeño pedacito
-                del mar y la naturaleza.
-            </p>
-
-        </div>
-
-
-        <div class="scroll">
-            ↓ Descubre nuestra historia
-        </div>
-
-    </section>
-
-
-
-    <!-- PRODUCTO -->
-
-    <section class="product-section">
-
-        <div class="section-container">
-
-
-            <div class="section-title">
-
-                <div class="mini">
-                    Nuestro producto
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="eyebrow">
+                    🌊 INSPIRADO EN EL MAR DEL DISTRITO DE LOS ÓRGANOS
                 </div>
 
-                <h2>
-                    Algo pequeño.
-                    <br>
-                    Algo especial.
-                </h2>
+                <h1>
+                    Pequeños recuerdos,
+                    <span>grandes historias.</span>
+                </h1>
 
                 <p>
-                    Creamos llaveros que no solo sirven como
-                    accesorios, sino también como recuerdos
-                    de una experiencia junto al mar.
+                    Bienvenido a <strong>EcoBeach</strong>.
+                    Descubre nuestros llaveros ecológicos artesanales de resina,
+                    creados para llevar contigo un pequeño pedacito
+                    del mar y recuerdo de los órganos.
                 </p>
-
             </div>
 
+            <!-- Ticker infinito de llaveros destacados -->
+            <div class="hero-ticker">
+                <div class="ticker-track">
+                    <div class="ticker-item" onclick="openProductModal('A8')">
+                        <img src="A8.jpeg" alt="Inicial A">
+                        <span>Inicial "A" Brisa Marina</span>
+                    </div>
+                    <div class="ticker-item" onclick="openProductModal('A10')">
+                        <img src="A10.jpeg" alt="Inicial F">
+                        <span>Inicial "F" Azul Océano</span>
+                    </div>
+                    <div class="ticker-item" onclick="openProductModal('A6')">
+                        <img src="A6.jpeg" alt="Inicial J">
+                        <span>Inicial "J" Atardecer Dorado</span>
+                    </div>
+                    <div class="ticker-item" onclick="openProductModal('A3')">
+                        <img src="A3.jpeg" alt="Inicial L">
+                        <span>Inicial "L" Mar Cristalino</span>
+                    </div>
+                    <div class="ticker-item" onclick="openProductModal('A2')">
+                        <img src="A2.jpeg" alt="Inicial M">
+                        <span>Inicial "M" Arrecife</span>
+                    </div>
+                    <div class="ticker-item" onclick="openProductModal('A5')">
+                        <img src="A5.jpeg" alt="Inicial N">
+                        <span>Inicial "N" Espuma de Playa</span>
+                    </div>
+                    <div class="ticker-item" onclick="openProductModal('A9')">
+                        <img src="A9.jpeg" alt="Inicial T">
+                        <span>Inicial "T" Profundidad</span>
+                    </div>
+                    <div class="ticker-item" onclick="openProductModal('A11')">
+                        <img src="A11.jpeg" alt="Inicial Z">
+                        <span>Inicial "Z" Orilla Marina</span>
+                    </div>
+                    <div class="ticker-item" onclick="openProductModal('A1')">
+                        <img src="A1.jpeg" alt="Número 8">
+                        <span>Número "8" Destello</span>
+                    </div>
+                    <div class="ticker-item" onclick="openProductModal('A7')">
+                        <img src="A7.jpeg" alt="Medallón Océano">
+                        <span>Medallón Circular Océano</span>
+                    </div>
+
+                    <!-- Duplicate for infinite smooth loop -->
+                    <div class="ticker-item" onclick="openProductModal('A8')">
+                        <img src="A8.jpeg" alt="Inicial A">
+                        <span>Inicial "A" Brisa Marina</span>
+                    </div>
+                    <div class="ticker-item" onclick="openProductModal('A10')">
+                        <img src="A10.jpeg" alt="Inicial F">
+                        <span>Inicial "F" Azul Océano</span>
+                    </div>
+                    <div class="ticker-item" onclick="openProductModal('A6')">
+                        <img src="A6.jpeg" alt="Inicial J">
+                        <span>Inicial "J" Atardecer Dorado</span>
+                    </div>
+                    <div class="ticker-item" onclick="openProductModal('A3')">
+                        <img src="A3.jpeg" alt="Inicial L">
+                        <span>Inicial "L" Mar Cristalino</span>
+                    </div>
+                    <div class="ticker-item" onclick="openProductModal('A2')">
+                        <img src="A2.jpeg" alt="Inicial M">
+                        <span>Inicial "M" Arrecife</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroll">
+                ↓ Explora nuestro catálogo de productos
+            </div>
+        </section>
 
 
-            <div class="product-card">
+        <!-- PRODUCTO Y CATÁLOGO DE DISEÑOS -->
+        <section class="product-section" id="producto">
+            <div class="section-container">
 
+                <div class="section-title">
+                    <div class="mini">
+                        Nuestra colección
+                    </div>
+                    <h2>
+                        Algo pequeño.
+                        <br>
+                        Algo especial.
+                    </h2>
+                    <p>
+                        Creamos llaveros que no solo sirven como hermosos accesorios,
+                        sino también como recuerdos vivos de una experiencia inolvidable
+                        junto al mar del Distrito de los Órganos.
+                    </p>
+                </div>
 
-                <!-- IMAGEN 2 -->
+                <!-- Tarjeta Destacada Principal -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="LLAVEROS.jpeg" alt="Llaveros EcoBeach Colección">
+                    </div>
 
-                <div class="product-image">
+                    <div class="product-info">
+                        <span class="tag">EcoBeach Collection</span>
+                        <h3>Llaveros ecológicos</h3>
+                        <p>
+                            Nuestros llaveros son elaborados a mano con resina cristalina ecológica,
+                            incorporando elementos naturales recolectados en las playas de Los Órganos.
+                            Cada pieza busca convertirse en un recuerdo único que puedas llevar contigo a diario.
+                        </p>
 
-                    <img
-                        src="LLAVEROS.jpeg"
-                        alt="Llaveros EcoBeach"
-                    >
-
+                        <div class="features">
+                            <div class="feature">🌿 Elaboración artesanal</div>
+                            <div class="feature">🌊 Inspirados en el mar</div>
+                            <div class="feature">🎨 Diseños únicos</div>
+                            <div class="feature">♻️ Enfoque ecológico</div>
+                        </div>
+                    </div>
                 </div>
 
 
+                <!-- CATÁLOGO DE DISEÑOS REALIZADOS (A1 - A11) -->
+                <div class="catalog-header">
+                    <div class="section-title" style="margin-bottom: 25px;">
+                        <div class="mini">Catálogo de Diseños Realizados</div>
+                        <h2>Elige tu Inicial o Figura Favorita</h2>
+                        <p>Haz clic en cualquier diseño para ampliar la fotografía y conocer sus detalles artesanales.
+                        </p>
+                    </div>
 
-                <!-- INFORMACIÓN -->
+                    <!-- Filtros por categoría -->
+                    <div class="catalog-filters">
+                        <button class="filter-btn active" onclick="filterCatalog('all', this)">🌟 Todos los
+                            Diseños</button>
+                        <button class="filter-btn" onclick="filterCatalog('letras', this)">🔤 Iniciales /
+                            Letras</button>
+                        <button class="filter-btn" onclick="filterCatalog('numeros', this)">🔢 Números</button>
+                        <button class="filter-btn" onclick="filterCatalog('especiales', this)">🌊 Ediciones Mar</button>
+                    </div>
 
-                <div class="product-info">
-
-                    <span class="tag">
-                        EcoBeach Collection
-                    </span>
-
-                    <h3>
-                        Llaveros ecológicos
-                    </h3>
-
-                    <p>
-                        Nuestros llaveros son elaborados con
-                        resina y diseños inspirados en el mar,
-                        la playa y la naturaleza.
-
-                        Cada pieza busca convertirse en un
-                        recuerdo único que puedas llevar
-                        contigo todos los días.
-                    </p>
-
-
-                    <div class="features">
-
-                        <div class="feature">
-                            🌿 Elaboración artesanal
+                    <!-- Selector rápido por Inicial -->
+                    <div class="initials-selector">
+                        <div class="initial-pill" onclick="filterByInitial('A', this)">A</div>
+                        <div class="initial-pill" onclick="filterByInitial('F', this)">F</div>
+                        <div class="initial-pill" onclick="filterByInitial('J', this)">J</div>
+                        <div class="initial-pill" onclick="filterByInitial('L', this)">L</div>
+                        <div class="initial-pill" onclick="filterByInitial('M', this)">M</div>
+                        <div class="initial-pill" onclick="filterByInitial('N', this)">N</div>
+                        <div class="initial-pill" onclick="filterByInitial('T', this)">T</div>
+                        <div class="initial-pill" onclick="filterByInitial('Z', this)">Z</div>
+                        <div class="initial-pill" onclick="filterByInitial('8', this)">8</div>
+                        <div class="initial-pill pill-special" onclick="filterCatalog('especiales', this)">🌊 Medallón
                         </div>
+                    </div>
+                </div>
 
-                        <div class="feature">
-                            🌊 Inspirados en el mar
+
+                <!-- Grid Dinámico de Tarjetas de Productos -->
+                <div class="catalog-grid" id="catalogGrid">
+
+                    <!-- A8: Inicial A -->
+                    <div class="catalog-card" data-category="letras" data-initial="A">
+                        <div class="catalog-card-img-wrap" onclick="openProductModal('A8')">
+                            <span class="catalog-card-badge">Inicial</span>
+                            <img src="A8.jpeg" alt="Diseño Llavero Letra A EcoBeach">
                         </div>
-
-                        <div class="feature">
-                            🎨 Diseños únicos
+                        <div class="catalog-card-body">
+                            <h3 class="catalog-card-title">Inicial "A" - Brisa Marina</h3>
+                            <p class="catalog-card-desc">Resina turquesa degradada con estrella de mar real, conchas
+                                blancas y herrajes chapados en oro.</p>
+                            <div class="catalog-card-footer">
+                                <span class="catalog-card-material">🐚 Conchas & Resina</span>
+                                <button class="btn-view-detail" onclick="openProductModal('A8')">Ver en detalle
+                                    🔍</button>
+                            </div>
                         </div>
+                    </div>
 
-                        <div class="feature">
-                            ♻️ Enfoque ecológico
+                    <!-- A10: Inicial F -->
+                    <div class="catalog-card" data-category="letras" data-initial="F">
+                        <div class="catalog-card-img-wrap" onclick="openProductModal('A10')">
+                            <span class="catalog-card-badge">Inicial</span>
+                            <img src="A10.jpeg" alt="Diseño Llavero Letra F EcoBeach">
                         </div>
+                        <div class="catalog-card-body">
+                            <h3 class="catalog-card-title">Inicial "F" - Azul Océano</h3>
+                            <p class="catalog-card-desc">Tono azul profundo con textura de olas, mini caracolas y
+                                colgante de concha acanalada.</p>
+                            <div class="catalog-card-footer">
+                                <span class="catalog-card-material">🌊 Azul Zafiro</span>
+                                <button class="btn-view-detail" onclick="openProductModal('A10')">Ver en detalle
+                                    🔍</button>
+                            </div>
+                        </div>
+                    </div>
 
+                    <!-- A6: Inicial J -->
+                    <div class="catalog-card" data-category="letras" data-initial="J">
+                        <div class="catalog-card-img-wrap" onclick="openProductModal('A6')">
+                            <span class="catalog-card-badge">Inicial</span>
+                            <img src="A6.jpeg" alt="Diseño Llavero Letra J EcoBeach">
+                        </div>
+                        <div class="catalog-card-body">
+                            <h3 class="catalog-card-title">Inicial "J" - Atardecer Dorado</h3>
+                            <p class="catalog-card-desc">Partículas doradas brillantes con destellos multicolor y
+                                conchitas seleccionadas sobre fondo de arena fina.</p>
+                            <div class="catalog-card-footer">
+                                <span class="catalog-card-material">✨ Destellos Gold</span>
+                                <button class="btn-view-detail" onclick="openProductModal('A6')">Ver en detalle
+                                    🔍</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- A3: Inicial L -->
+                    <div class="catalog-card" data-category="letras" data-initial="L">
+                        <div class="catalog-card-img-wrap" onclick="openProductModal('A3')">
+                            <span class="catalog-card-badge">Inicial</span>
+                            <img src="A3.jpeg" alt="Diseño Llavero Letra L EcoBeach">
+                        </div>
+                        <div class="catalog-card-body">
+                            <h3 class="catalog-card-title">Inicial "L" - Mar Cristalino</h3>
+                            <p class="catalog-card-desc">Bicolor turquesa y transparencia cristal, con estrellas de mar
+                                miniatura e inscrustaciones marinas.</p>
+                            <div class="catalog-card-footer">
+                                <span class="catalog-card-material">⭐ Estrella Marina</span>
+                                <button class="btn-view-detail" onclick="openProductModal('A3')">Ver en detalle
+                                    🔍</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- A2: Inicial M -->
+                    <div class="catalog-card" data-category="letras" data-initial="M">
+                        <div class="catalog-card-img-wrap" onclick="openProductModal('A2')">
+                            <span class="catalog-card-badge">Inicial</span>
+                            <img src="A2.jpeg" alt="Diseño Llavero Letra M EcoBeach">
+                        </div>
+                        <div class="catalog-card-body">
+                            <h3 class="catalog-card-title">Inicial "M" - Arrecife de Color</h3>
+                            <p class="catalog-card-desc">Combinación vibrante de escamas de color marina, láminas de pan
+                                de oro y pequeñas conchas del litoral.</p>
+                            <div class="catalog-card-footer">
+                                <span class="catalog-card-material">🎨 Pigmentos Vivos</span>
+                                <button class="btn-view-detail" onclick="openProductModal('A2')">Ver en detalle
+                                    🔍</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- A5: Inicial N -->
+                    <div class="catalog-card" data-category="letras" data-initial="N">
+                        <div class="catalog-card-img-wrap" onclick="openProductModal('A5')">
+                            <span class="catalog-card-badge">Inicial</span>
+                            <img src="A5.jpeg" alt="Diseño Llavero Letra N EcoBeach">
+                        </div>
+                        <div class="catalog-card-body">
+                            <h3 class="catalog-card-title">Inicial "N" - Espuma de Playa</h3>
+                            <p class="catalog-card-desc">Efecto realista de ola marina con resina pigmentada azul
+                                turquesa y estrellas en relieve.</p>
+                            <div class="catalog-card-footer">
+                                <span class="catalog-card-material">🌊 Efecto Ola Real</span>
+                                <button class="btn-view-detail" onclick="openProductModal('A5')">Ver en detalle
+                                    🔍</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- A9: Inicial T -->
+                    <div class="catalog-card" data-category="letras" data-initial="T">
+                        <div class="catalog-card-img-wrap" onclick="openProductModal('A9')">
+                            <span class="catalog-card-badge">Inicial</span>
+                            <img src="A9.jpeg" alt="Diseño Llavero Letra T EcoBeach">
+                        </div>
+                        <div class="catalog-card-body">
+                            <h3 class="catalog-card-title">Inicial "T" - Profundidad Marina</h3>
+                            <p class="catalog-card-desc">Degradado marino perfecto en tonos marinos con caracola
+                                nacarada y mosquetón dorado anticorrosivo.</p>
+                            <div class="catalog-card-footer">
+                                <span class="catalog-card-material">🐚 Caracola Nacarada</span>
+                                <button class="btn-view-detail" onclick="openProductModal('A9')">Ver en detalle
+                                    🔍</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- A11: Inicial Z -->
+                    <div class="catalog-card" data-category="letras" data-initial="Z">
+                        <div class="catalog-card-img-wrap" onclick="openProductModal('A11')">
+                            <span class="catalog-card-badge">Inicial</span>
+                            <img src="A11.jpeg" alt="Diseño Llavero Letra Z EcoBeach">
+                        </div>
+                        <div class="catalog-card-body">
+                            <h3 class="catalog-card-title">Inicial "Z" - Orilla Marina</h3>
+                            <p class="catalog-card-desc">Capa superior de resina cristalina azul mar y base cargada de
+                                micro-elementos marinos y conchas.</p>
+                            <div class="catalog-card-footer">
+                                <span class="catalog-card-material">🌊 Orilla de Playa</span>
+                                <button class="btn-view-detail" onclick="openProductModal('A11')">Ver en detalle
+                                    🔍</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- A1: Número 8 -->
+                    <div class="catalog-card" data-category="numeros" data-initial="8">
+                        <div class="catalog-card-img-wrap" onclick="openProductModal('A1')">
+                            <span class="catalog-card-badge">Número</span>
+                            <img src="A1.jpeg" alt="Diseño Llavero Número 8 EcoBeach">
+                        </div>
+                        <div class="catalog-card-body">
+                            <h3 class="catalog-card-title">Número "8" - Destello Marino</h3>
+                            <p class="catalog-card-desc">Molde de número con brillos rosa pastel, micro-lentejuelas
+                                marinas y conchitas de playa Los Órganos.</p>
+                            <div class="catalog-card-footer">
+                                <span class="catalog-card-material">💖 Glitter Rosa & Mar</span>
+                                <button class="btn-view-detail" onclick="openProductModal('A1')">Ver en detalle
+                                    🔍</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- A7: Medallón Circular Océano -->
+                    <div class="catalog-card" data-category="especiales" data-initial="Medallon">
+                        <div class="catalog-card-img-wrap" onclick="openProductModal('A7')">
+                            <span class="catalog-card-badge">Edición Mar</span>
+                            <img src="A7.jpeg" alt="Diseño Llavero Medallón Océano EcoBeach">
+                        </div>
+                        <div class="catalog-card-body">
+                            <h3 class="catalog-card-title">Medallón Océano Circular</h3>
+                            <p class="catalog-card-desc">Cápsula circular que recrea la vista aérea del océano con
+                                espuma de playa, estrellas y dijes de conchas.</p>
+                            <div class="catalog-card-footer">
+                                <span class="catalog-card-material">🏝️ Mini Paisaje Marino</span>
+                                <button class="btn-view-detail" onclick="openProductModal('A7')">Ver en detalle
+                                    🔍</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- LLAVEROS: Colección Clásica -->
+                    <div class="catalog-card" data-category="especiales" data-initial="Coleccion">
+                        <div class="catalog-card-img-wrap" onclick="openProductModal('LLAVEROS')">
+                            <span class="catalog-card-badge">Colección</span>
+                            <img src="LLAVEROS.jpeg" alt="Colección Llaveros EcoBeach">
+                        </div>
+                        <div class="catalog-card-body">
+                            <h3 class="catalog-card-title">Colección Clásica EcoBeach</h3>
+                            <p class="catalog-card-desc">Set de llaveros variados con iniciales y dijes marinos en su
+                                estuche artesanal ecológico.</p>
+                            <div class="catalog-card-footer">
+                                <span class="catalog-card-material">📦 Set Completo</span>
+                                <button class="btn-view-detail" onclick="openProductModal('LLAVEROS')">Ver en detalle
+                                    🔍</button>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
 
             </div>
-
-        </div>
-
-    </section>
+        </section>
 
 
-
-    <!-- GALERÍA -->
-
-    <section class="gallery-section">
-
-        <div class="section-container">
-
-            <div class="section-title">
-
-                <div class="mini">
-                    Proceso EcoBeach
+        <!-- SECCIÓN DE PROCESO CREATIVO (GALERÍA) -->
+        <section class="gallery-section">
+            <div class="section-container">
+                <div class="section-title">
+                    <div class="mini">Proceso EcoBeach</div>
+                    <h2>Del diseño a la creación.</h2>
+                    <p>
+                        Aquí vemos cómo nace cada idea: desde la planificación,
+                        pasando por la elaboración y culminando en una pieza única.
+                    </p>
                 </div>
 
+                <div class="gallery-grid">
+                    <figure class="gallery-item">
+                        <img src="planificacion.jpeg"
+                            alt="Niños planificando el diseño, materiales y estructura del proyecto en laptop">
+                        <figcaption>Planificación</figcaption>
+                    </figure>
+
+                    <figure class="gallery-item">
+                        <img src="Elaboración.png" alt="Niños elaborando su proyecto">
+                        <figcaption>Elaboración</figcaption>
+                    </figure>
+
+                    <figure class="gallery-item">
+                        <img src="diseño final.jpeg" alt="Diseño final del proyecto EcoBeach">
+                        <figcaption>Diseño final</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- HISTORIA DEL PROYECTO -->
+        <section class="story">
+            <div class="story-container">
+                <div class="mini">Más que un llavero</div>
                 <h2>
-                    Del diseño a la creación.
+                    Llévate un pedacito
+                    de la playa de Los Órganos contigo.
                 </h2>
-
                 <p>
-                    Aquí vemos cómo nace cada idea: desde la planificación,
-                    pasando por la elaboración y culminando en una pieza única.
+                    El proyecto <strong>"Llaveros Ecológicos EcoBeach"</strong>
+                    nace como una iniciativa emprendedora desarrollada por
+                    estudiantes del primer grado de secundaria de la
+                    Institución Educativa Augusto Salazar Bondy.
+                    <br><br>
+                    Tiene como finalidad promover el emprendimiento juvenil,
+                    la creatividad y la conciencia ambiental mediante la
+                    elaboración y comercialización de llaveros artesanales
+                    de resina ecológica.
                 </p>
+            </div>
+        </section>
 
+
+        <!-- BENEFICIOS -->
+        <section class="benefits">
+            <div class="section-title">
+                <div class="mini">¿Por qué EcoBeach?</div>
+                <h2>Hecho para recordar.</h2>
             </div>
 
-            <div class="gallery-grid">
+            <div class="benefits-grid">
+                <div class="benefit">
+                    <div class="benefit-icon">🌊</div>
+                    <h3>Inspiración marina</h3>
+                    <p>Diseños inspirados en el océano y las playas de Los Órganos.</p>
+                </div>
 
-                <figure class="gallery-item">
-                    <img src="planificacion.jpeg" alt="Niños planificando el diseño, materiales y estructura del proyecto en laptop">
-                    <figcaption>Planificación</figcaption>
-                </figure>
+                <div class="benefit">
+                    <div class="benefit-icon">🎨</div>
+                    <h3>Diseños únicos</h3>
+                    <p>Cada pieza tiene su propia personalidad y combinaciones irrepetibles.</p>
+                </div>
 
-                <figure class="gallery-item">
-                    <img src="Elaboración.png" alt="Niños elaborando su proyecto">
-                    <figcaption>Elaboración</figcaption>
-                </figure>
+                <div class="benefit">
+                    <div class="benefit-icon">🖐️</div>
+                    <h3>Hecho con dedicación</h3>
+                    <p>Preparado a mano por estudiantes emprendedores con cuidado y esmero.</p>
+                </div>
 
-                <figure class="gallery-item">
-                    <img src="diseño final.jpeg" alt="Diseño final del proyecto EcoBeach">
-                    <figcaption>Diseño final</figcaption>
-                </figure>
-
+                <div class="benefit">
+                    <div class="benefit-icon">💙</div>
+                    <h3>Un recuerdo especial</h3>
+                    <p>Un pequeño objeto ecológico que guarda una inolvidable experiencia.</p>
+                </div>
             </div>
-
-        </div>
-
-    </section>
+        </section>
 
 
-
-    <!-- HISTORIA -->
-
-    <section class="story">
-
-        <div class="story-container">
-
-            <div class="mini">
-                Más que un llavero
-            </div>
-
-            <h2>
-                Llévate un pedacito
-                de la costa contigo.
-            </h2>
-
+        <!-- LLAMADO FINAL (CTA) -->
+        <section class="cta">
+            <h2>¿Quieres llevarte uno contigo?</h2>
             <p>
-                El proyecto <strong>"Llaveros Ecológicos EcoBeach"</strong>
-                nace como una iniciativa emprendedora desarrollada por
-                estudiantes del primer grado de secundaria de la
-                Institución Educativa Augusto Salazar Bondy.
-
-                <br><br>
-
-                Tiene como finalidad promover el emprendimiento juvenil,
-                la creatividad y la conciencia ambiental mediante la
-                elaboración y comercialización de llaveros artesanales
-                de resina ecológica inspirados en el mar y la naturaleza.
+                Descubre nuestros diseños y encuentra
+                el llavero que represente tu conexión
+                con el mar de Los Órganos.
             </p>
 
+            <a class="cta-button" href="#producto"
+                onclick="alert('¡Gracias por tu interés en EcoBeach! 🌊 Revisa el catálogo arriba para elegir tu inicial favorita.')">
+                🐚 CONOCER NUESTROS LLAVEROS
+            </a>
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer>
+            ECOBEACH · Pequeños recuerdos, grandes historias 🌊 | I.E. Augusto Salazar Bondy - Los Órganos
+        </footer>
+
+    </main>
+
+
+    <!-- =========================================================
+         LIGHTBOX MODAL DE PRODUCTO
+    ========================================================= -->
+    <div class="modal-overlay" id="productModal" onclick="closeProductModalOnBackdrop(event)">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeProductModal()">&times;</button>
+            <div class="modal-image-col">
+                <img id="modalImg" src="A8.jpeg" alt="Producto ampliado">
+            </div>
+            <div class="modal-info-col">
+                <span class="modal-tag" id="modalTag">Edición Limitada</span>
+                <h2 class="modal-title" id="modalTitle">Inicial "A" - Brisa Marina</h2>
+                <p class="modal-desc" id="modalDesc">
+                    Llavero ecológico hecho a mano con resina cristalina de alto brillo.
+                    Cada concha y estrella de mar es cuidadosamente seleccionada en la playa de Los Órganos.
+                </p>
+
+                <div class="modal-specs">
+                    <div class="modal-spec-item">
+                        <span>✨</span>
+                        <strong id="modalSpec1">Resina Ecológica No Tóxica</strong>
+                    </div>
+                    <div class="modal-spec-item">
+                        <span>🐚</span>
+                        <strong id="modalSpec2">Conchas y elementos de playa reales</strong>
+                    </div>
+                    <div class="modal-spec-item">
+                        <span>🔑</span>
+                        <strong id="modalSpec3">Argolla de alta resistencia anticorrosiva</strong>
+                    </div>
+                </div>
+
+                <a id="modalWhatsappBtn" class="btn-whatsapp-order" href="#" target="_blank">
+                    💬 Consultar disponibilidad por WhatsApp
+                </a>
+            </div>
         </div>
-
-    </section>
-
-
-
-    <!-- BENEFICIOS -->
-
-    <section class="benefits">
-
-        <div class="section-title">
-
-            <div class="mini">
-                ¿Por qué EcoBeach?
-            </div>
-
-            <h2>
-                Hecho para recordar.
-            </h2>
-
-        </div>
-
-
-        <div class="benefits-grid">
-
-
-            <div class="benefit">
-
-                <div class="benefit-icon">
-                    🌊
-                </div>
-
-                <h3>
-                    Inspiración marina
-                </h3>
-
-                <p>
-                    Diseños inspirados en el océano,
-                    la playa y la naturaleza.
-                </p>
-
-            </div>
-
-
-
-            <div class="benefit">
-
-                <div class="benefit-icon">
-                    🎨
-                </div>
-
-                <h3>
-                    Diseños únicos
-                </h3>
-
-                <p>
-                    Cada diseño busca tener su propia
-                    personalidad.
-                </p>
-
-            </div>
-
-
-
-            <div class="benefit">
-
-                <div class="benefit-icon">
-                    🖐️
-                </div>
-
-                <h3>
-                    Hecho con dedicación
-                </h3>
-
-                <p>
-                    Cada pieza es preparada con cuidado
-                    y atención al detalle.
-                </p>
-
-            </div>
-
-
-
-            <div class="benefit">
-
-                <div class="benefit-icon">
-                    💙
-                </div>
-
-                <h3>
-                    Un recuerdo especial
-                </h3>
-
-                <p>
-                    Un pequeño objeto que puede guardar
-                    una gran experiencia.
-                </p>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-
-    <!-- CTA -->
-
-    <section class="cta">
-
-        <h2>
-            ¿Quieres llevarte
-            uno contigo?
-        </h2>
-
-        <p>
-            Descubre nuestros diseños y encuentra
-            el llavero que represente tu conexión
-            con el mar.
-        </p>
-
-
-        <!-- Puedes cambiar este enlace -->
-        <a
-            class="cta-button"
-            href="#producto"
-            onclick="alert('¡Gracias por tu interés en EcoBeach! 🌊')"
-        >
-            🐚 CONOCER NUESTROS LLAVEROS
-        </a>
-
-    </section>
-
-
-
-    <!-- FOOTER -->
-
-    <footer>
-
-        ECOBEACH · Pequeños recuerdos, grandes historias 🌊
-
-    </footer>
-
-
-</main>
-
-
-
-<script>
-
-    /* =====================================================
-       INTRO → PÁGINA PRINCIPAL
-    ===================================================== */
-
-    const intro = document.getElementById("intro");
-    const main = document.getElementById("main");
-
-
-    /*
-       Después de aproximadamente 4 segundos
-       comienza la transición.
-    */
-
-    setTimeout(() => {
-
-        intro.classList.add("hide");
-
-        setTimeout(() => {
-
-            main.classList.add("show");
-
-            document.body.style.overflow = "auto";
-
-        }, 900);
-
-    }, 4200);
-
-
-
-    /* =====================================================
-       BURBUJAS DINÁMICAS
-    ===================================================== */
-
-    function createBubble() {
-
-        const bubble =
-            document.createElement("div");
-
-        bubble.className = "bubble";
-
-
-        const size =
-            Math.random() * 12 + 5;
-
-
-        bubble.style.width =
-            size + "px";
-
-        bubble.style.height =
-            size + "px";
-
-
-        bubble.style.left =
-            Math.random() * 100 + "%";
-
-
-        bubble.style.animationDuration =
-            (Math.random() * 7 + 6) + "s";
-
-
-        bubble.style.animationDelay =
-            Math.random() * 2 + "s";
-
-
-        document.body.appendChild(bubble);
-
-
-        setTimeout(() => {
-
-            bubble.remove();
-
-        }, 15000);
-
-    }
-
-
-    /*
-       Crear burbujas constantemente
-    */
-
-    setInterval(createBubble, 700);
-
-
-    /* Crear algunas inmediatamente */
-
-    for(let i = 0; i < 12; i++) {
-
-        setTimeout(
-            createBubble,
-            i * 150
-        );
-
-    }
-
-
-    /* =====================================================
-       ANIMACIÓN AL HACER SCROLL
-    ===================================================== */
-
-    const observer =
-        new IntersectionObserver(
-            (entries) => {
-
-                entries.forEach(entry => {
-
-                    if(entry.isIntersecting) {
-
-                        entry.target.style.opacity = "1";
-
-                        entry.target.style.transform =
-                            "translateY(0)";
-
-                    }
-
-                });
-
+    </div>
+
+
+    <!-- =========================================================
+         SCRIPTS Y LÓGICA INTERACTIVA
+    ========================================================= -->
+    <script>
+        /* Base de datos de productos para el Lightbox Modal */
+        const productData = {
+            'A8': {
+                title: 'Inicial "A" - Brisa Marina',
+                tag: 'Llavero de Inicial',
+                image: 'A8.jpeg',
+                desc: 'Bellísima letra A encapsulada en resina cristalina con degradado turquesa marino, estrella de mar en miniatura y conchas marinas seleccionadas.',
+                spec1: 'Resina ecológica transparente brillante',
+                spec2: 'Estrella de mar y caracolas de Los Órganos',
+                spec3: 'Herraje dorado de mosquetón resistente'
             },
-            {
-                threshold: 0.15
+            'A10': {
+                title: 'Inicial "F" - Azul Océano',
+                tag: 'Llavero de Inicial',
+                image: 'A10.jpeg',
+                desc: 'Diseño en azul zafiro intenso con simulación de espuma de mar en la base, caracoles de playa y dije flotante de concha marina acanalada.',
+                spec1: 'Pigmentos marinos de alta intensidad',
+                spec2: 'Caracolas finas y estrella blanca',
+                spec3: 'Argolla reforzada de acero inoxidable'
+            },
+            'A6': {
+                title: 'Inicial "J" - Atardecer Dorado',
+                tag: 'Edición Atardecer',
+                image: 'A6.jpeg',
+                desc: 'Inspirado en el atardecer en la playa. Destellos de oro brillante y confeti de colores marinos junto a conchas marinas naturales.',
+                spec1: 'Láminas finas doradas y destellos',
+                spec2: 'Base de resina cristalina ultra clara',
+                spec3: 'Cadena y aro metálico dorado'
+            },
+            'A3': {
+                title: 'Inicial "L" - Mar Cristalino',
+                tag: 'Llavero de Inicial',
+                image: 'A3.jpeg',
+                desc: 'Acabado en doble capa: mar azul turquesa en la parte superior y fondo de conchas blancas sobre arena en la parte inferior.',
+                spec1: 'Doble capa de pigmento y resina',
+                spec2: 'Dije adicional de estrella marina en la cadena',
+                spec3: 'Mosquetón dorado para enganche rápido'
+            },
+            'A2': {
+                title: 'Inicial "M" - Arrecife de Color',
+                tag: 'Edición Arrecife',
+                image: 'A2.jpeg',
+                desc: 'Letra M llena de vida con partículas multicolor, hojuelas de oro y conchitas sobre fondo de arena marina de Los Órganos.',
+                spec1: 'Multicolor con brillos de arrecife',
+                spec2: 'Materiales recolectados por estudiantes',
+                spec3: 'Herraje anticorrosivo para llaves'
+            },
+            'A5': {
+                title: 'Inicial "N" - Espuma de Playa',
+                tag: 'Llavero de Inicial',
+                image: 'A5.jpeg',
+                desc: 'Muestra impresionante de ola marina encapsulada en la letra N, con una estrella de mar blanca en relieve y conchas en la base.',
+                spec1: 'Técnica de movimiento de ola marina',
+                spec2: 'Estrellas de mar naturales en relieve',
+                spec3: 'Argolla y broche de seguridad'
+            },
+            'A9': {
+                title: 'Inicial "T" - Profundidad Marina',
+                tag: 'Llavero de Inicial',
+                image: 'A9.jpeg',
+                desc: 'Letra T en gradiente azul cobalto que se aclara hacia la base, revelando hermosas conchas marinas en resina transparente.',
+                spec1: 'Gradiente cobalto a cristal',
+                spec2: 'Conchas nacaradas seleccionadas',
+                spec3: 'Dije de estrella marina en la cadena'
+            },
+            'A11': {
+                title: 'Inicial "Z" - Orilla Marina',
+                tag: 'Llavero de Inicial',
+                image: 'A11.jpeg',
+                desc: 'Elegante inicial Z con diseño de playa y agua cristalina, incluyendo estrella marina y conchas finas recubiertas de resina suave.',
+                spec1: 'Diseño de playa cristalina',
+                spec2: 'Resina resistente a arañazos',
+                spec3: 'Herraje elegante de alta calidad'
+            },
+            'A1': {
+                title: 'Número "8" - Destello Marino',
+                tag: 'Llavero Numérico',
+                image: 'A1.jpeg',
+                desc: 'Número 8 elaborado con delicados destellos rosa pastel, lentejuelas marinas y conchitas de la playa de Los Órganos.',
+                spec1: 'Lentejuelas y brillos pastel',
+                spec2: 'Modelado artesanal impecable',
+                spec3: 'Ideal para fechas o números de la suerte'
+            },
+            'A7': {
+                title: 'Medallón Océano Circular',
+                tag: 'Edición Especial Océano',
+                image: 'A7.jpeg',
+                desc: 'Cápsula circular artesanal que recrea una porción real del mar peruano con conchas, arena y olas de resina en 3D.',
+                spec1: 'Pieza circular artística de 5cm',
+                spec2: 'Dije extra de concha acanalada',
+                spec3: 'Mosquetón y aro chapado en oro'
+            },
+            'LLAVEROS': {
+                title: 'Colección Clásica EcoBeach',
+                tag: 'Set de Colección',
+                image: 'LLAVEROS.jpeg',
+                desc: 'Colección original de llaveros ecológicos elaborados por los estudiantes del 1° de Secundaria de la I.E. Augusto Salazar Bondy.',
+                spec1: 'Diseños variados y personalizados',
+                spec2: '100% Ecológico y apoya el emprendimiento escolar',
+                spec3: 'Perfecto para regalo o recuerdo turístico'
             }
-        );
+        };
 
+        /* Abrir Modal de Producto */
+        function openProductModal(productId) {
+            const data = productData[productId];
+            if (!data) return;
 
-    document
-        .querySelectorAll(
-            ".product-card, .benefit, .story-container"
-        )
-        .forEach(element => {
+            document.getElementById('modalImg').src = data.image;
+            document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('modalTag').innerText = data.tag;
+            document.getElementById('modalDesc').innerText = data.desc;
+            document.getElementById('modalSpec1').innerText = data.spec1;
+            document.getElementById('modalSpec2').innerText = data.spec2;
+            document.getElementById('modalSpec3').innerText = data.spec3;
 
-            element.style.opacity = "0";
+            const waMsg = encodeURIComponent(`Hola EcoBeach! 🌊 Estoy interesado en el llavero ${data.title}. ¿Podrían brindarme más información?`);
+            document.getElementById('modalWhatsappBtn').href = `https://wa.me/?text=${waMsg}`;
 
-            element.style.transform =
-                "translateY(35px)";
+            const modal = document.getElementById('productModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
 
-            element.style.transition =
-                "opacity 1s ease, transform 1s ease";
+        /* Cerrar Modal */
+        function closeProductModal() {
+            const modal = document.getElementById('productModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
 
-            observer.observe(element);
+        function closeProductModalOnBackdrop(event) {
+            if (event.target.id === 'productModal') {
+                closeProductModal();
+            }
+        }
 
+        /* Cerrar con tecla ESC */
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeProductModal();
         });
 
-</script>
+
+        /* Filtrar Catálogo por Categorías */
+        function filterCatalog(category, btnElement) {
+            const cards = document.querySelectorAll('.catalog-card');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            if (btnElement) btnElement.classList.add('active');
+
+            // Desmarcar pills
+            document.querySelectorAll('.initial-pill').forEach(pill => pill.classList.remove('active'));
+
+            cards.forEach(card => {
+                const cardCat = card.getAttribute('data-category');
+                if (category === 'all' || cardCat === category) {
+                    card.style.display = 'flex';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 50);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+
+        /* Filtrar Catálogo por Inicial Específica */
+        function filterByInitial(initial, pillElement) {
+            const cards = document.querySelectorAll('.catalog-card');
+            const pills = document.querySelectorAll('.initial-pill');
+
+            pills.forEach(p => p.classList.remove('active'));
+            if (pillElement) pillElement.classList.add('active');
+
+            cards.forEach(card => {
+                const cardInitial = card.getAttribute('data-initial');
+                if (cardInitial === initial) {
+                    card.style.display = 'flex';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
 
 
+        /* =====================================================
+           TRANSICIÓN DE INTRO A PÁGINA PRINCIPAL
+        ===================================================== */
+        const intro = document.getElementById("intro");
+        const main = document.getElementById("main");
+
+        setTimeout(() => {
+            intro.classList.add("hide");
+            setTimeout(() => {
+                main.classList.add("show");
+                document.body.style.overflow = "auto";
+            }, 900);
+        }, 3800);
+
+
+        /* =====================================================
+           BURBUJAS DINÁMICAS
+        ===================================================== */
+        function createBubble() {
+            const bubble = document.createElement("div");
+            bubble.className = "bubble";
+
+            const size = Math.random() * 12 + 5;
+            bubble.style.width = size + "px";
+            bubble.style.height = size + "px";
+            bubble.style.left = Math.random() * 100 + "%";
+            bubble.style.animationDuration = (Math.random() * 7 + 6) + "s";
+            bubble.style.animationDelay = Math.random() * 2 + "s";
+
+            document.body.appendChild(bubble);
+
+            setTimeout(() => {
+                bubble.remove();
+            }, 15000);
+        }
+
+        setInterval(createBubble, 600);
+        for (let i = 0; i < 12; i++) {
+            setTimeout(createBubble, i * 150);
+        }
+
+
+        /* =====================================================
+           ANIMACIÓN AL HACER SCROLL (IntersectionObserver)
+        ===================================================== */
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        document.querySelectorAll(".product-card, .benefit, .story-container, .catalog-card, .gallery-item")
+            .forEach(element => {
+                element.style.opacity = "0";
+                element.style.transform = "translateY(35px)";
+                element.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+                observer.observe(element);
+            });
+    </script>
 </body>
+
 </html>
