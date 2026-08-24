@@ -1279,6 +1279,63 @@
                 display: none;
             }
         }
+
+        /* =====================================================
+           BOTÓN FLOTANTE DE WHATSAPP (COMPRAS & CONSULTAS)
+        ===================================================== */
+        .whatsapp-float-btn {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            z-index: 9995;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px 12px 14px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13px;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.45), 0 0 20px rgba(37, 211, 102, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .whatsapp-float-btn:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.65), 0 0 30px rgba(37, 211, 102, 0.45);
+            color: white;
+        }
+
+        .whatsapp-icon-svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+            flex-shrink: 0;
+            animation: pulseWa 2.5s infinite ease-in-out;
+        }
+
+        @keyframes pulseWa {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.18); }
+        }
+
+        @media (max-width: 480px) {
+            .whatsapp-float-btn {
+                bottom: 15px;
+                left: 15px;
+                padding: 0;
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                justify-content: center;
+            }
+            .whatsapp-float-btn span {
+                display: none;
+            }
+        }
     </style>
 </head>
 
@@ -1876,6 +1933,15 @@
             <source src="Hawaiian Roller Coaster Ride (From Lilo & Stitch).mp3" type="audio/mpeg">
         </audio>
     </div>
+    <!-- =========================================================
+         BOTÓN FLOTANTE DE WHATSAPP (COMPRAS & CONSULTAS)
+    ========================================================= -->
+    <a href="https://wa.me/51948372086?text=Hola%20EcoBeach!%20%F0%9F%8D%9A%20Quisiera%20realizar%20un%20pedido%20o%20consulta%20sobre%20los%20llaveros." target="_blank" class="whatsapp-float-btn" title="Haz tu pedido por WhatsApp (948 372 086)">
+        <svg class="whatsapp-icon-svg" viewBox="0 0 32 32">
+            <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 8.164-2.138c2.372 1.288 5.042 1.966 7.836 1.966 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.333c-2.487 0-4.921-0.665-7.050-1.925l-0.505-0.299-4.838 1.267 1.29-4.717-0.329-0.524c-1.378-2.193-2.102-4.721-2.102-7.302 0-7.518 6.115-13.633 13.633-13.633s13.633 6.115 13.633 13.633c0 7.518-6.115 13.633-13.633 13.633zM22.569 19.334c-0.36-0.18-2.131-1.052-2.461-1.172s-0.57-0.18-0.81 0.18c-0.24 0.36-0.93 1.172-1.141 1.412s-0.42 0.27-0.78 0.09c-0.36-0.18-1.52-0.56-2.896-1.787-1.070-0.954-1.792-2.132-2.002-2.492s-0.022-0.554 0.158-0.733c0.162-0.161 0.36-0.42 0.54-0.63s0.24-0.36 0.36-0.60c0.12-0.24 0.06-0.45-0.03-0.63s-0.81-1.952-1.11-2.672c-0.292-0.702-0.591-0.607-0.81-0.618s-0.45-0.012-0.69-0.012c-0.24 0-0.63 0.09-0.96 0.45s-1.26 1.232-1.26 3.002 1.29 3.48 1.47 3.72c0.18 0.24 2.539 3.877 6.151 5.437 0.859 0.371 1.53 0.593 2.053 0.759 0.863 0.274 1.648 0.235 2.269 0.143 0.693-0.103 2.131-0.871 2.431-1.712s0.3-1.56 0.21-1.712c-0.09-0.152-0.33-0.242-0.69-0.422z"/>
+        </svg>
+        <span>Pedir por WhatsApp</span>
+    </a>
 
 
     <!-- =========================================================
