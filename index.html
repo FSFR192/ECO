@@ -1173,6 +1173,112 @@
                 border-radius: 20px;
             }
         }
+
+        /* =====================================================
+           REPRODUCTOR DE MÚSICA FLOTANTE (GUITARRA ACÚSTICA & OLAS)
+        ===================================================== */
+        .music-player-widget {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 9990;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 18px 10px 12px;
+            background: rgba(3, 28, 33, 0.88);
+            border: 1px solid rgba(91, 224, 207, 0.35);
+            border-radius: 50px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(91, 224, 207, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: white;
+            font-size: 13px;
+        }
+
+        .music-player-widget:hover {
+            transform: translateY(-3px) scale(1.03);
+            border-color: rgba(91, 224, 207, 0.6);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 30px rgba(91, 224, 207, 0.35);
+        }
+
+        .music-btn-toggle {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #156d78, #0a4750);
+            border: 1px solid var(--accent-cyan);
+            color: white;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(91, 224, 207, 0.3);
+        }
+
+        .music-btn-toggle:hover {
+            background: var(--accent-cyan);
+            color: #031c21;
+            transform: scale(1.1);
+        }
+
+        .music-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .music-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: #d1f7f2;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .music-sub {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .eq-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 12px;
+        }
+
+        .eq-bar {
+            width: 2px;
+            background: var(--accent-cyan);
+            border-radius: 2px;
+            height: 3px;
+            transition: height 0.3s ease;
+        }
+
+        .music-player-widget.playing .eq-bar:nth-child(1) { animation: eqAnim 0.8s infinite ease-in-out 0.1s; }
+        .music-player-widget.playing .eq-bar:nth-child(2) { animation: eqAnim 1.1s infinite ease-in-out 0.3s; }
+        .music-player-widget.playing .eq-bar:nth-child(3) { animation: eqAnim 0.7s infinite ease-in-out 0.2s; }
+
+        @keyframes eqAnim {
+            0%, 100% { height: 3px; }
+            50% { height: 12px; }
+        }
+
+        @media (max-width: 480px) {
+            .music-player-widget {
+                bottom: 15px;
+                right: 15px;
+                padding: 8px 14px 8px 10px;
+            }
+            .music-sub {
+                display: none;
+            }
+        }
     </style>
 </head>
 
@@ -1749,6 +1855,31 @@
 
 
     <!-- =========================================================
+         REPRODUCTOR DE MÚSICA FLOTANTE
+    ========================================================= -->
+    <div class="music-player-widget" id="musicWidget">
+        <button class="music-btn-toggle" id="musicToggleBtn" onclick="toggleBackgroundMusic()" title="Reproducir / Pausar Música de Fondo">
+            ▶
+        </button>
+        <div class="music-info">
+            <div class="music-title">
+                <span>🎵 Brisa Marina & Acústica</span>
+                <div class="eq-bars">
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                </div>
+            </div>
+            <span class="music-sub" id="musicStatusText">Haga clic para escuchar</span>
+        </div>
+        <audio id="bgAudio" loop preload="auto">
+            <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=tropical-acoustic-beach-112836.mp3" type="audio/mpeg">
+            <source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=acoustic-breeze-10143.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+
+    <!-- =========================================================
          SCRIPTS Y LÓGICA INTERACTIVA
     ========================================================= -->
     <script>
@@ -2013,6 +2144,120 @@
                 element.style.transition = "opacity 0.8s ease, transform 0.8s ease";
                 observer.observe(element);
             });
+
+
+        /* =====================================================
+           LÓGICA REPRODUCTOR MÚSICA DE FONDO (ACÚSTICA & OLAS)
+        ===================================================== */
+        let isMusicPlaying = false;
+        const bgAudio = document.getElementById("bgAudio");
+        const musicWidget = document.getElementById("musicWidget");
+        const musicToggleBtn = document.getElementById("musicToggleBtn");
+        const musicStatusText = document.getElementById("musicStatusText");
+
+        // Sintetizador Web Audio de respaldo (Sonido relajante de olas del mar)
+        let audioCtx = null;
+        let oceanGain = null;
+        let oceanFilter = null;
+
+        function initSynthOcean() {
+            if (audioCtx) return;
+            try {
+                const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
+                audioCtx = new AudioCtxClass();
+                
+                const bufferSize = audioCtx.sampleRate * 4;
+                const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+                const data = buffer.getChannelData(0);
+                let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
+                for (let i = 0; i < bufferSize; i++) {
+                    const white = Math.random() * 2 - 1;
+                    b0 = 0.99886 * b0 + white * 0.0555179;
+                    b1 = 0.99332 * b1 + white * 0.0750759;
+                    b2 = 0.96900 * b2 + white * 0.1538520;
+                    b3 = 0.86650 * b3 + white * 0.3104856;
+                    b4 = 0.55000 * b4 + white * 0.5329522;
+                    b5 = -0.7616 * b5 - white * 0.0168980;
+                    data[i] = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
+                    data[i] *= 0.11;
+                    b6 = white * 0.115926;
+                }
+
+                const noiseNode = audioCtx.createBufferSource();
+                noiseNode.buffer = buffer;
+                noiseNode.loop = true;
+
+                oceanFilter = audioCtx.createBiquadFilter();
+                oceanFilter.type = 'lowpass';
+                oceanFilter.frequency.value = 350;
+
+                oceanGain = audioCtx.createGain();
+                oceanGain.gain.value = 0.15;
+
+                const lfo = audioCtx.createOscillator();
+                lfo.frequency.value = 0.12;
+                const lfoGain = audioCtx.createGain();
+                lfoGain.gain.value = 250;
+                lfo.connect(lfoGain);
+                lfoGain.connect(oceanFilter.frequency);
+                lfo.start();
+
+                noiseNode.connect(oceanFilter);
+                oceanFilter.connect(oceanGain);
+                oceanGain.connect(audioCtx.destination);
+                noiseNode.start();
+            } catch(e) {
+                console.log("Web Audio synth unsupported", e);
+            }
+        }
+
+        function toggleBackgroundMusic() {
+            if (isMusicPlaying) {
+                if (bgAudio) bgAudio.pause();
+                if (audioCtx && audioCtx.state === 'running') {
+                    audioCtx.suspend();
+                }
+                isMusicPlaying = false;
+                musicWidget.classList.remove("playing");
+                musicToggleBtn.innerText = "▶";
+                musicStatusText.innerText = "Haga clic para escuchar";
+            } else {
+                if (bgAudio) {
+                    bgAudio.volume = 0.35;
+                    const playPromise = bgAudio.play();
+
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            isMusicPlaying = true;
+                            musicWidget.classList.add("playing");
+                            musicToggleBtn.innerText = "⏸";
+                            musicStatusText.innerText = "Reproduciendo brisa marina";
+                        }).catch(() => {
+                            // Fallback ambiental marino
+                            initSynthOcean();
+                            if (audioCtx) audioCtx.resume();
+                            isMusicPlaying = true;
+                            musicWidget.classList.add("playing");
+                            musicToggleBtn.innerText = "⏸";
+                            musicStatusText.innerText = "Ambiente de olas de playa";
+                        });
+                    }
+                }
+            }
+        }
+
+        // Inicio suave al primer clic en la página
+        document.addEventListener('click', function autoPlayOnce() {
+            if (!isMusicPlaying && bgAudio) {
+                bgAudio.volume = 0.30;
+                bgAudio.play().then(() => {
+                    isMusicPlaying = true;
+                    musicWidget.classList.add("playing");
+                    musicToggleBtn.innerText = "⏸";
+                    musicStatusText.innerText = "Reproduciendo brisa marina";
+                }).catch(() => {});
+            }
+        }, { once: true });
     </script>
 </body>
 
