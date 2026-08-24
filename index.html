@@ -1863,18 +1863,17 @@
         </button>
         <div class="music-info">
             <div class="music-title">
-                <span>🎵 Brisa Marina & Acústica</span>
+                <span>🎵 Hawaiian Roller Coaster Ride</span>
                 <div class="eq-bars">
                     <div class="eq-bar"></div>
                     <div class="eq-bar"></div>
                     <div class="eq-bar"></div>
                 </div>
             </div>
-            <span class="music-sub" id="musicStatusText">Haga clic para escuchar</span>
+            <span class="music-sub" id="musicStatusText">Lilo & Stitch 🌺</span>
         </div>
         <audio id="bgAudio" loop preload="auto">
-            <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=tropical-acoustic-beach-112836.mp3" type="audio/mpeg">
-            <source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=acoustic-breeze-10143.mp3" type="audio/mpeg">
+            <source src="Hawaiian Roller Coaster Ride (From Lilo & Stitch).mp3" type="audio/mpeg">
         </audio>
     </div>
 
@@ -2081,10 +2080,27 @@
 
 
         /* =====================================================
-           TRANSICIÓN DE INTRO A PÁGINA PRINCIPAL
+           TRANSICIÓN DE INTRO A PÁGINA PRINCIPAL & MÚSICA
         ===================================================== */
         const intro = document.getElementById("intro");
         const main = document.getElementById("main");
+
+        function playHawaiianMusic() {
+            if (!isMusicPlaying && bgAudio) {
+                bgAudio.volume = 0.38;
+                bgAudio.play().then(() => {
+                    isMusicPlaying = true;
+                    if (musicWidget) musicWidget.classList.add("playing");
+                    if (musicToggleBtn) musicToggleBtn.innerText = "⏸";
+                    if (musicStatusText) musicStatusText.innerText = "Lilo & Stitch 🌺";
+                }).catch(err => {
+                    console.log("Autoplay bloqueado por políticas del navegador, esperará primer toque/clic.", err);
+                });
+            }
+        }
+
+        // Justo cuando el logo está por desaparecer (~3.1 segundos)
+        setTimeout(playHawaiianMusic, 3100);
 
         setTimeout(() => {
             intro.classList.add("hide");
@@ -2231,7 +2247,7 @@
                             isMusicPlaying = true;
                             musicWidget.classList.add("playing");
                             musicToggleBtn.innerText = "⏸";
-                            musicStatusText.innerText = "Reproduciendo brisa marina";
+                            musicStatusText.innerText = "Lilo & Stitch 🌺";
                         }).catch(() => {
                             // Fallback ambiental marino
                             initSynthOcean();
@@ -2249,12 +2265,12 @@
         // Inicio suave al primer clic en la página
         document.addEventListener('click', function autoPlayOnce() {
             if (!isMusicPlaying && bgAudio) {
-                bgAudio.volume = 0.30;
+                bgAudio.volume = 0.38;
                 bgAudio.play().then(() => {
                     isMusicPlaying = true;
                     musicWidget.classList.add("playing");
                     musicToggleBtn.innerText = "⏸";
-                    musicStatusText.innerText = "Reproduciendo brisa marina";
+                    musicStatusText.innerText = "Lilo & Stitch 🌺";
                 }).catch(() => {});
             }
         }, { once: true });
